@@ -4,23 +4,19 @@ import Logo from "../Shared/Logo";
 
 const Navbar = () => {
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm rounded-xl ">
       <div className="navbar  w-11/12 mx-auto py-5">
         <div className="navbar-start">
           <Logo></Logo>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className=" menu-horizontal px-1 text-[#1F1F1F] flex gap-8 list-none text-lg ">
+          <ul className=" menu-horizontal px-1 font-semibold text-[#1F1F1F] flex gap-8 list-none text-lg ">
             <li>
               <NavLink to="/" className=" ">
                 Services
               </NavLink>
             </li>
-            <li>
-              <NavLink to="wqdu" className="">
-                Coverage
-              </NavLink>
-            </li>
+           
             <li>
               <NavLink to="wqd" className="">
                 Pricing
@@ -29,6 +25,11 @@ const Navbar = () => {
             <li>
               <NavLink to="wd" className=" ">
                 Be a Rider
+              </NavLink>
+            </li>
+             <li>
+              <NavLink to="/mapcover" className="">
+                Coverage
               </NavLink>
             </li>
           </ul>

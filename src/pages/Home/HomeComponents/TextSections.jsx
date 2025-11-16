@@ -14,7 +14,7 @@ const TextSections = () => {
         </p>
       </div>
 
-      <div className="max-w-6xl px-4 mx-auto mt-12">
+      <div className="max-w-6xl px-4 mx-auto mt-12 space-y-5">
         <div className="collapse collapse-arrow bg-base-100 border border-base-300
          ">
           <input type="radio" name="my-accordion-2" defaultChecked />
@@ -29,7 +29,8 @@ const TextSections = () => {
             alignment to your shoulders.
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-base-100 border border-base-300 ">
+
+        <div className="collapse  collapse-arrow bg-base-100 border border-base-300 ">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title font-semibold">
             Is it suitable for all ages and body types?

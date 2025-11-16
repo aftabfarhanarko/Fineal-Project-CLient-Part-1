@@ -3,10 +3,11 @@ import Logo from "../Shared/Logo";
 
 const Footer = () => {
   return (
-    <div className=" bg-neutral "> 
-    <footer className="footer w-11/12 mx-auto sm:footer-horizontal text-neutral-content p-10">
+    <div className=" bg-neutral rounded-t-lg "> 
+    <footer className="footer w-11/12 mx-auto  sm:footer-horizontal text-neutral-content p-10">
       <nav>
         <Logo></Logo>
+        
         <a className="link link-hover">Branding</a>
         <a className="link link-hover">Design</a>
         <a className="link link-hover">Marketing</a>
