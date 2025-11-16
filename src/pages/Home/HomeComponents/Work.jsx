@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import ne from "../../../assets/bookingIcon.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FaHandHoldingUsd, FaRegBuilding } from "react-icons/fa";
+import { MdEventAvailable, MdLocalShipping } from "react-icons/md";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { GiDeliveryDrone } from "react-icons/gi";
 
 const Work = () => {
   useEffect(() => {
@@ -34,10 +38,7 @@ const Work = () => {
           data-aos="fade-up"
           data-aos-delay="300"
         >
-          <img
-            className="group-hover:animate-bounce transition-all duration-300  "
-            src={ne}
-          ></img>
+          <FaHandHoldingUsd className="w-20 h-13 text-secondary group-hover:animate-bounce transition-all duration-300" ></FaHandHoldingUsd>
           <h3 className="text-lg text-secondary   font-semibold text-justify mt-2">
             Cash On Delivery
           </h3>
@@ -52,10 +53,7 @@ const Work = () => {
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <img
-            className="group-hover:animate-bounce transition-all duration-300"
-            src={ne}
-          ></img>
+         <MdLocalShipping  className="w-20 h-13 text-secondary group-hover:animate-bounce transition-all duration-300" ></MdLocalShipping>
           <h3 className="text-lg text-secondary   mt-1.5 font-semibold">
             Delivery Hub
           </h3>
@@ -69,10 +67,10 @@ const Work = () => {
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          <img
-            className="group-hover:animate-bounce transition-all duration-300"
-            src={ne}
-          ></img>
+       <MdEventAvailable     className="w-20 h-13 text-secondary group-hover:animate-bounce transition-all duration-300" ></MdEventAvailable>
+
+
+     
           <h3 className="text-lg text-secondary mt-1.5  font-semibold">
             Booking SME & Corporate
           </h3>

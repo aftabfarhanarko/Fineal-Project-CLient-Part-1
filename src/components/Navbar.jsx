@@ -27,6 +27,11 @@ const Navbar = () => {
                 Be a Rider
               </NavLink>
             </li>
+            <li>
+              <NavLink to="wd" className=" ">
+             About Us
+              </NavLink>
+            </li>
              <li>
               <NavLink to="/mapcover" className="">
                 Coverage

@@ -57,12 +57,12 @@ const MapCover = () => {
       </div>
 
       {/* Map Continer */}
-      <div className=" h-[500px]   ">
+      <div className="  h-[600px] md:h-[800px]  ">
         <MapContainer
           center={position}
-          zoom={8}
+          zoom={7.5}
           scrollWheelZoom={false}
-          className="h-[500px] "
+          className=" h-[600px] md:h-[800px] "
           ref={mapRef}
         >
           <TileLayer
