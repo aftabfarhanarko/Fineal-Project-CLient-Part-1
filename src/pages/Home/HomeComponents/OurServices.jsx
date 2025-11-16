@@ -9,7 +9,7 @@ const OurServices = () => {
   }, []);
   return (
     <div>
-      <div className="border text-center p-3 py-6 md:p-16 md:px-20 rounded-lg bg-[#03373D] ">
+      <div className="border text-center p-5 py-8 md:p-16 md:px-20 rounded-lg bg-[#03373D] ">
         <h2 className="text-3xl font-bold text-white">Our Services</h2>
         <p className="mt-2.5 text-thried font-medium text-white max-w-[600px] mx-auto">
           Enjoy fast, reliable parcel delivery with real-time tracking and zero
@@ -17,7 +17,7 @@ const OurServices = () => {
           time, every time.
         </p>
 
-        <div className="grid  grid-cols-2  md:grid-cols-3 gap-2 md:gap-5 mt-8">
+        <div className="grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-2 md:gap-5 mt-8">
           <div
             className="border group border-base-300 shadow   bg-white rounded-2xl p-6 py-8
             hover: bg-gradient-to-b   hover:from-[#b9df61] hover:to-[#e1f7ac]

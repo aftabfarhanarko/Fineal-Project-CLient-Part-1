@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ne from "../../assets/bookingIcon.png";
+import ne from "../../../assets/bookingIcon.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -10,7 +10,7 @@ const Work = () => {
   return (
     <div className=" max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold text-secondary">How it Works</h1>
-      <div className="grid  grid-cols-2  md:grid-cols-4 gap-2 md:gap-5 mt-8">
+      <div className="grid  grid-cols-1 px-5 md:px-0  md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-8">
         <div
           className="border group border-base-300 shadow   bg-white rounded-2xl p-6"
           data-aos="fade-up"

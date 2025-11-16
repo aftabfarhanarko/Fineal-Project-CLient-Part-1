@@ -1,9 +1,10 @@
 import React from "react";
 import Banner from "./HomeComponents/Banner";
-import Work from "./Work";
 import OurServices from "./HomeComponents/OurServices";
 import Company from "./HomeComponents/Company";
 import Safe from "./HomeComponents/Safe";
+import SecondBanner from "./HomeComponents/SecondBanner";
+import Work from "./HomeComponents/Work";
 
 const Home = () => {
   return (
@@ -24,6 +25,9 @@ const Home = () => {
 
       <section className="my-20">
         <Safe></Safe>
+      </section>
+      <section className="my-20">
+       <SecondBanner></SecondBanner>
       </section>
     </div>
   );

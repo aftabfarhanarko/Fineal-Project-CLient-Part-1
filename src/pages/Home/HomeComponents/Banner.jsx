@@ -50,6 +50,7 @@ const Banner = () => {
               Be A Rider
             </button>
           </div>
+          
         </div>
       </div>
 
