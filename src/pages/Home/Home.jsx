@@ -6,7 +6,10 @@ import Safe from "./HomeComponents/Safe";
 import SecondBanner from "./HomeComponents/SecondBanner";
 import Work from "./HomeComponents/Work";
 import TextSections from "./HomeComponents/TextSections";
+import MenuCard from "./HomeComponents/MenuCard";
 
+
+const reivewPromis = fetch("/reviews.json").then(res => res.json());
 const Home = () => {
   return (
     <div className="px-0.5">
@@ -29,6 +32,9 @@ const Home = () => {
       </section>
       <section className="my-20">
        <SecondBanner></SecondBanner>
+      </section>
+      <section className="my-20">
+       <MenuCard reivewPromis={reivewPromis}></MenuCard>
       </section>
       <section className="my-20">
        <TextSections></TextSections>
