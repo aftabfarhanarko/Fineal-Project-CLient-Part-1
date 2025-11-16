@@ -1,19 +1,47 @@
 import React, { useState } from "react";
 import registe from "../assets/image-upload-icon.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-const Register = () => {
-  const [show, setShow] = useState(true);
+import { toast } from "sonner";
+import useAuth from "../Hook/useAuth";
 
+const Register = () => {
+  const naviget = useNavigate();
+  const [show, setShow] = useState(true);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { userCreat, profilesUpdeat } = useAuth();
 
   const handelData = (data) => {
-    console.log("Submit", data);
+    const email = data.email;
+    const password = data.password;
+    const photoURL = data.photo;
+    const displayName = data.name;
+    const pointrs = {
+      photoURL,
+      displayName,
+    };
+
+    userCreat(email, password)
+      .then((result) => {
+        console.log(result.user);
+        
+        profilesUpdeat(pointrs)
+          .then(
+            () => toast.success("Creat User Successfully")
+            // naviget("/")
+          )
+          .catch((err) => {
+            toast.error(err.code);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.code);
+      });
   };
 
   const handleGoogleRegister = () => {};
@@ -50,6 +78,24 @@ const Register = () => {
             )}
           </div>
 
+          {/* Name Field */}
+          <div className="mb-4 md:mb-5">
+            <label className="block text-gray-900 font-medium mb-2">
+              Photo URl
+            </label>
+            <input
+              type="url"
+              {...register("photo", { required: true })}
+              placeholder="your photo url"
+              className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+            />
+            {errors.name?.type === "required" && (
+              <p className="text-red-500 text-xs font-semibold mt-1">
+                Must be Complete Field
+              </p>
+            )}
+          </div>
+
           {/* Email Field */}
           <div className="mb-4 md:mb-5">
             <label className="block text-gray-900 font-medium mb-2">
@@ -75,11 +121,11 @@ const Register = () => {
             </label>
             <input
               type={show ? "password" : "text"}
-              {...register("password", { 
-                required: true, 
-                minLength: 6 , 
-                pattern:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
-            })}
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
+              })}
               placeholder="Password"
               className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
             />

@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Shared/Logo";
 import { Outlet } from "react-router";
 import loogo from "../assets//authImage.png";
+import { Toaster } from "sonner";
 
 const AuthLayout = () => {
   return (
@@ -34,19 +35,9 @@ const AuthLayout = () => {
           </div>
         </div>
       </div>
+      <Toaster position="top-center" />
     </div>
   );
 };
 
 export default AuthLayout;
-// <div className="w-10/12 mx-auto min-h-[60vh] mt-15">
-//   <Logo></Logo>
-//   <div className="flex  ">
-//     <div className="flex-1">
-//       <Outlet></Outlet>
-//     </div>
-//     <div className="flex bg-[#FAFDF0]">
-//       <img src={loogo}></img>
-//     </div>
-//   </div>
-// </div>

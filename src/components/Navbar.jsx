@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import Logo from "../Shared/Logo";
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
                 Services
               </NavLink>
             </li>
-           
+
             <li>
               <NavLink to="wqd" className="">
                 Pricing
@@ -29,10 +29,10 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="about" className=" ">
-             About Us
+                About Us
               </NavLink>
             </li>
-             <li>
+            <li>
               <NavLink to="/mapcover" className="">
                 Coverage
               </NavLink>
@@ -44,20 +44,23 @@ const Navbar = () => {
           <div className="flex">
             <div className="flex items-center gap-4">
               {/* Sign In Button */}
-              <button
-                className="px-5.5 py-2 rounded-xl border border-gray-300 text-gray-700 font-semibold 
+              <Link to="/login">
+                <button
+                  className="px-5.5 py-2 rounded-xl border border-gray-300 text-gray-700 font-semibold 
                      bg-white hover:bg-primary hover:text-black hover:outline-none transition"
-              >
-                Sign In
-              </button>
-
+                >
+                  Sign In
+                </button>
+              </Link>
               {/* Sign Up Button */}
-              <button
-                className="px-5.5 py-2 rounded-xl border border-gray-300 text-gray-700 font-semibold 
+              <Link to="/register">
+                <button
+                  className="px-5.5 py-2 rounded-xl border border-gray-300 text-gray-700 font-semibold 
                      bg-white hover:bg-primary hover:text-black hover:outline-none transition"
-              >
-                Sign Up
-              </button>
+                >
+                  Sign Up
+                </button>
+              </Link>
             </div>
 
             {/* Black Arrow Button */}
