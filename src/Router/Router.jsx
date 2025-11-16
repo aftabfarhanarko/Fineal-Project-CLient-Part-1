@@ -4,6 +4,10 @@ import Home from "../pages/Home/Home";
 import Loding from "../Shared/Loding";
 import MapCover from "../pages/MapCover";
 import About from "../pages/About";
+import Error from "../Shared/Error";
+import AuthLayout from "../Layout/AuthLayout";
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +26,28 @@ export const router = createBrowserRouter([
             {
                 path:"/about",
                 element:<About></About>
+            },
+
+
+
+            {
+                path:"/*",
+                element:<Error></Error>
+
+            }
+        ]
+    },
+    {
+        path:"/",
+        element:<AuthLayout></AuthLayout>,
+        children:[
+            {
+                path:"/login",
+                element:<Login></Login>
+            },
+            {
+                path:"/register",
+                element:<Register></Register>
             }
         ]
     }

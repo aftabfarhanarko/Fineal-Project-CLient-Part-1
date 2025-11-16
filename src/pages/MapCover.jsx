@@ -56,6 +56,9 @@ const MapCover = () => {
         </form>
       </div>
 
+<div>
+  <h3 className="text-2xl font-semibold text-secondary my-10 border-t pt-6 border-base-300">We deliver almost all over Bangladesh</h3>
+</div>
       {/* Map Continer */}
       <div className="  h-[600px] md:h-[800px]  ">
         <MapContainer
