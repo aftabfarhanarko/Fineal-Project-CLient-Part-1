@@ -12,22 +12,22 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className=" menu-horizontal px-1 text-[#1F1F1F] flex gap-8 list-none text-lg ">
             <li>
-              <NavLink to="" className=" ">
+              <NavLink to="/" className=" ">
                 Services
               </NavLink>
             </li>
             <li>
-              <NavLink to="" className="">
+              <NavLink to="wqdu" className="">
                 Coverage
               </NavLink>
             </li>
             <li>
-              <NavLink to="" className="">
+              <NavLink to="wqd" className="">
                 Pricing
               </NavLink>
             </li>
             <li>
-              <NavLink to="" className=" ">
+              <NavLink to="wd" className=" ">
                 Be a Rider
               </NavLink>
             </li>

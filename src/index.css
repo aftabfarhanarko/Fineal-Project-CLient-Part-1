@@ -9,18 +9,53 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #CAEB66;
+  --color-primary: #B8E55C;
   --color-secondary: #03373D;
   --color-mytext: #1F1F1F;
+  --color-thried: #0B0B0B;
 }
 
-/* * {
+* {
   font-family: "Bai Jamjuree", sans-serif;
-  /* font-weight: 500; */
-  /* font-style: normal; */
-/* } */
+
+
+ }
 
 
 a.active{
-  @apply bg-primary  p-2 rounded-full px-6
+  @apply bg-primary  p-1 rounded-full px-6
+}
+
+/* Hover effect সম্পূর্ণ বন্ধ করার জন্য */
+.custom-carousel .slider {
+  overflow: visible !important;
+}
+
+.custom-carousel .slide {
+  cursor: default !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.custom-carousel:hover .slide {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.custom-carousel .slider-wrapper {
+  transition: none !important;
+  transform: none !important;
+}
+
+.custom-carousel .slider-wrapper:hover {
+  transform: none !important;
+}
+
+/* Arrow buttons সবসময় দেখাতে চাইলে */
+.custom-carousel .control-arrow {
+  opacity: 0.4 !important;
+}
+
+.custom-carousel:hover .control-arrow {
+  opacity: 1 !important;
 }
