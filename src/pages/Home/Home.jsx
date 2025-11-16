@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "./HomeComponents/Banner";
 import Work from "./Work";
+import OurServices from "./HomeComponents/OurServices";
 
 const Home = () => {
   return (
@@ -10,6 +11,10 @@ const Home = () => {
       </section>
       <section className="my-20">
         <Work></Work>
+      </section>
+
+      <section className="my-20">
+        <OurServices></OurServices>
       </section>
     </div>
   );

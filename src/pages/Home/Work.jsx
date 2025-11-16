@@ -4,20 +4,22 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Work = () => {
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({ duration: 900, once: true, easing: "ease-out-cubic" });
   }, []);
   return (
-    
-    <div>
+    <div className=" max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold text-secondary">How it Works</h1>
       <div className="grid  grid-cols-2  md:grid-cols-4 gap-2 md:gap-5 mt-8">
         <div
-          className="border border-base-300 shadow  bg-white rounded-2xl p-6"
+          className="border group border-base-300 shadow   bg-white rounded-2xl p-6"
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          <img className="" src={ne}></img>
+          <img
+            className="group-hover:animate-bounce transition-all duration-300"
+            src={ne}
+          ></img>
           <h3 className="text-lg text-secondary  mt-1.5 font-semibold">
             Booking Pick & Drop
           </h3>
@@ -28,11 +30,14 @@ const Work = () => {
         </div>
 
         <div
-          className="border border-base-300 shadow  bg-white rounded-2xl p-6"
+          className="group  border border-base-300 shadow  bg-white rounded-2xl p-6"
           data-aos="fade-up"
-              data-aos-delay="300"
+          data-aos-delay="300"
         >
-          <img className="" src={ne}></img>
+          <img
+            className="group-hover:animate-bounce transition-all duration-300  "
+            src={ne}
+          ></img>
           <h3 className="text-lg text-secondary   font-semibold text-justify mt-2">
             Cash On Delivery
           </h3>
@@ -43,11 +48,14 @@ const Work = () => {
         </div>
 
         <div
-          className="border border-base-300 shadow  bg-white rounded-2xl p-6"
+          className="group border border-base-300 shadow  bg-white rounded-2xl p-6"
           data-aos="fade-up"
-              data-aos-delay="400"
+          data-aos-delay="400"
         >
-          <img className="" src={ne}></img>
+          <img
+            className="group-hover:animate-bounce transition-all duration-300"
+            src={ne}
+          ></img>
           <h3 className="text-lg text-secondary   mt-1.5 font-semibold">
             Delivery Hub
           </h3>
@@ -57,11 +65,14 @@ const Work = () => {
           </p>
         </div>
         <div
-          className="border border-base-300 shadow  bg-white rounded-2xl p-6"
-           data-aos="fade-up"
-              data-aos-delay="500"
+          className="border group border-base-300 shadow  bg-white rounded-2xl p-6"
+          data-aos="fade-up"
+          data-aos-delay="500"
         >
-          <img className="" src={ne}></img>
+          <img
+            className="group-hover:animate-bounce transition-all duration-300"
+            src={ne}
+          ></img>
           <h3 className="text-lg text-secondary mt-1.5  font-semibold">
             Booking SME & Corporate
           </h3>
