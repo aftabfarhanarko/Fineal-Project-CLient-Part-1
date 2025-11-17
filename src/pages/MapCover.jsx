@@ -24,8 +24,8 @@ const MapCover = () => {
   };
 
   return (
-    <div className="  bg-white p-2 md:p-6 py-5 md:py-12  rounded-xl my-10">
-      <h1 className="text-3xl font-bold text-secondary my-15">
+    <div className="  bg-white p-2 md:p-6 py-5 md:py-6  rounded-xl my-20">
+      <h1 className="text-3xl font-bold text-secondary my-10 px-4 md:px-0">
         We are available in 64 districts
       </h1>
 
@@ -56,9 +56,11 @@ const MapCover = () => {
         </form>
       </div>
 
-<div>
-  <h3 className="text-2xl font-semibold text-secondary my-10 border-t pt-6 border-base-300">We deliver almost all over Bangladesh</h3>
-</div>
+      <div>
+        <h3 className="text-2xl font-semibold text-secondary my-10 border-t pt-6 border-base-300">
+          We deliver almost all over Bangladesh
+        </h3>
+      </div>
       {/* Map Continer */}
       <div className="  h-[600px] md:h-[800px]  ">
         <MapContainer
@@ -85,7 +87,7 @@ const MapCover = () => {
                   Services Area : {center.covered_area.join(", ")}
                 </strong>{" "}
                 <br></br>
-                <strong>Status : {center.status}</strong>
+                <strong>Status : {center.status ? "Open" : "Off"}</strong>
               </Popup>
             </Marker>
           ))}

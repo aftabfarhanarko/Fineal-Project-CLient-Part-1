@@ -11,6 +11,7 @@ import Register from "../Auth/Register";
 import PriverRouter from "./PriverRouter";
 import ForgetPassword from "../Auth/ForgetPassword";
 import RiderBook from "../pages/Raider/RiderBook";
+import Price from "../pages/Price";
 
 export const router = createBrowserRouter([
   {
@@ -31,10 +32,18 @@ export const router = createBrowserRouter([
         path: "/about",
         element: <About></About>,
       },
-       {
-        path:"/raider",
-        element:<RiderBook></RiderBook>
-       },
+      {
+        path: "/raider",
+        element: (
+          <PriverRouter>
+            <RiderBook></RiderBook>
+          </PriverRouter>
+        ),
+      },
+      {
+        path: "/price",
+        element:<Price></Price>
+      },
       {
         path: "/*",
         element: <Error></Error>,

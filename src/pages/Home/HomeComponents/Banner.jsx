@@ -4,6 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import banner1 from "../../../assets/banner/banner1.png";
 import banner2 from "../../../assets/banner/banner2.png";
 import banner3 from "../../../assets/banner/banner3.png";
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 const Banner = () => {
   return (
@@ -31,20 +32,9 @@ const Banner = () => {
               className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-black flex items-center justify-center 
          hover:bg-gray-800 transition transform hover:-translate-y-0.5"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 md:w-5 md:h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h12m-4-4 4 4-4 4"
-                />
-              </svg>
+              <MdOutlineArrowOutward  className="w-4 h-4 md:w-5 md:h-5 text-white"/>
+
+              
             </button>
             <button className="ml-2 md:ml-3 border-2 bg-base-100 border-gray-300 text-gray-700 px-4 md:px-6 py-1 md:py-1.5 text-sm md:text-base rounded-full font-semibold hover:bg-base-200 transition-all">
               Be A Rider
@@ -66,20 +56,7 @@ const Banner = () => {
               className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-black flex items-center justify-center 
          hover:bg-gray-800 transition transform hover:-translate-y-0.5"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 md:w-5 md:h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h12m-4-4 4 4-4 4"
-                />
-              </svg>
+              <MdOutlineArrowOutward  className="w-4 h-4 md:w-5 md:h-5 text-white"/>
             </button>
             <button className="ml-2 md:ml-3 border-2 bg-base-100 border-gray-300 text-gray-700 px-4 md:px-6 py-1 md:py-1.5 text-sm md:text-base rounded-full font-semibold hover:bg-base-200 transition-all">
               Be A Rider
@@ -100,20 +77,7 @@ const Banner = () => {
               className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-black flex items-center justify-center 
          hover:bg-gray-800 transition transform hover:-translate-y-0.5"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 md:w-5 md:h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h12m-4-4 4 4-4 4"
-                />
-              </svg>
+               <MdOutlineArrowOutward  className="w-4 h-4 md:w-5 md:h-5 text-white"/>
             </button>
             <button className="ml-2 md:ml-3 border-2 bg-base-100 border-gray-300 text-gray-700 px-4 md:px-6 py-1 md:py-1.5 text-sm md:text-base rounded-full font-semibold hover:bg-base-200 transition-all">
               Be A Rider

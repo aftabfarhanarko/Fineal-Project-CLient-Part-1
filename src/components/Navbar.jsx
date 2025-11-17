@@ -4,6 +4,7 @@ import Logo from "../Shared/Logo";
 import useAuth from "../Hook/useAuth";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 const Navbar = () => {
   const { user, userLogOut } = useAuth();
@@ -23,18 +24,7 @@ const Navbar = () => {
                   Services
                 </NavLink>
               </li>
-
-              <li>
-                <NavLink to="wqd" className="">
-                  Pricing
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/raider" className=" ">
-                  Be a Rider
-                </NavLink>
-              </li>
-              <li>
+                 <li>
                 <NavLink to="about" className=" ">
                   About Us
                 </NavLink>
@@ -44,6 +34,19 @@ const Navbar = () => {
                   Coverage
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/raider" className=" ">
+                  Be a Rider
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/price" className="">
+                  Pricing
+                </NavLink>
+              </li>
+              
+             
+              
             </ul>
           </div>
 
@@ -74,6 +77,12 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
                       Logout
                     </button>
                   </Link>
+                  <button
+                    className="w-9 h-9 md:w-11 md:h-11 -ml-2.5 rounded-full bg-black flex items-center justify-center 
+                           hover:bg-gray-800 transition transform hover:-translate-y-0.5"
+                  >
+                    <MdOutlineArrowOutward className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  </button>
                 </div>
               ) : (
                 <div className="flex gap-3">
@@ -104,6 +113,12 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
                       Register
                     </button>
                   </Link>
+                  <button
+                    className="w-9 h-9 md:w-11 md:h-11 -ml-2.5 rounded-full bg-black flex items-center justify-center 
+                           hover:bg-gray-800 transition transform hover:-translate-y-0.5"
+                  >
+                    <MdOutlineArrowOutward className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  </button>
                 </div>
               )}
             </div>
@@ -125,21 +140,19 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
         <div className="bg-white border-t border-base-300 rounded-b-xl shadow py-5 transition duration-500">
           {/* Profile */}
           <div className="flex justify-center  items-center gap-4 mb-3">
-            {
-              user && <img
-              className="w-10 h-10 rounded-full object-cover"
-              src={user?.photoURL}
-              alt="profile"
-            />
-            }
-            {
-              user ? 
-            
-             <Link>
-                    {" "}
-                    <button
-                      onClick={() => userLogOut()}
-                      className="
+            {user && (
+              <img
+                className="w-10 h-10 rounded-full object-cover"
+                src={user?.photoURL}
+                alt="profile"
+              />
+            )}
+            {user ? (
+              <Link>
+                {" "}
+                <button
+                  onClick={() => userLogOut()}
+                  className="
                    px-4 py-1 
    font-medium  rounded-md
 bg-gradient-to-r from-[#b2e36d] via-[#b8e04e] to-[#bae240] 
@@ -148,22 +161,23 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
   hover:scale-105 active:scale-95 
   focus:outline-none 
                   "
-                    >
-                      Logout
-                    </button>
-             </Link>
-               :  <Link to="/login">
-                    {" "}
-                    <button
-                      className="
+                >
+                  Logout
+                </button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                {" "}
+                <button
+                  className="
                  px-6 py-2  text-[#82aa09]
   bg-white  outline  rounded-md   transition-all duration-300 ease-out   bg-gradient-to-r hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300  hover:text-black hover:shadow-xl  hover:outline-none font-semibold hover:scale-100  active:scale-95  focus:outline-none                        
                   "
-                    >
-                      Login
-                    </button>
-                  </Link>
-             }
+                >
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
 
           {/* Navigation */}
