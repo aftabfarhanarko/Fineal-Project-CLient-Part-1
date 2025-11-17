@@ -10,7 +10,6 @@ const SendPricel = () => {
 
   const subMiteFrom = (data) => {
     console.log("Submite Producat", data);
-    
   };
 
   return (
@@ -28,14 +27,25 @@ const SendPricel = () => {
             Enter your parcel details
           </h2>
           {/* Document Type */}
-          <div className="flex items-center gap-6 mb-6">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="radio" value="document" {...register("type1")} />
-              <span className="text-md font-semibold">Document</span>
+          <div>
+            <label className="label mr-4">
+              <input
+                type="radio"
+                {...register("parcelType")}
+                value="document"
+                className="radio"
+                defaultChecked
+              />
+              Document
             </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="radio" value="non-document" {...register("type2")} />
-              <span className="text-md font-semibold">Not-Document</span>
+            <label className="label">
+              <input
+                type="radio"
+                {...register("parcelType")}
+                value="non-document"
+                className="radio"
+              />
+              Non-Document
             </label>
           </div>
 
@@ -107,7 +117,7 @@ const SendPricel = () => {
 
               <div>
                 <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
-                 Sender Address
+                  Sender Address
                 </label>
                 <input
                   type="text"
