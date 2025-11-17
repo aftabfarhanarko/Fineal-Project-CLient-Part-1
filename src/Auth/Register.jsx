@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import useAuth from "../Hook/useAuth";
+import axios from "axios";
 
 const Register = () => {
   const naviget = useNavigate();
@@ -19,25 +20,39 @@ const Register = () => {
   const handelData = (data) => {
     const email = data.email;
     const password = data.password;
-    const photoURL = data.photo;
     const displayName = data.name;
-    const pointrs = {
-      photoURL,
-      displayName,
-    };
+
+    const profileImg = data.photo[0];
 
     userCreat(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        toast.success("Creat User Successfully");
 
-        profilesUpdeat(pointrs)
-          .then(
-            () => toast.success("Creat User Successfully")
-            // naviget("/")
-          )
-          .catch((err) => {
-            toast.error(err.code);
-          });
+        // Img File Set From Data
+        const fromData = new FormData();
+        fromData.append("image", profileImg);
+
+        // Img File Set Axios APis
+        const api_img_url = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_imge_hoset
+        }`;
+
+        axios.post(api_img_url, fromData).then((res) => {
+          console.log("After Img Upload Now", res?.data?.data?.url);
+          const pointrs = {
+            displayName,
+            photoURL: res?.data?.data?.url,
+          };
+
+          profilesUpdeat(pointrs)
+            .then(() => {
+              toast.success("Updeat Profile Successfully");
+              naviget("/");
+            })
+            .catch((err) => {
+              toast.warning(err.code);
+            });
+        });
       })
       .catch((err) => {
         toast.error(err.code);
@@ -83,17 +98,24 @@ const Register = () => {
             )}
           </div>
 
-          {/* Name Field */}
+          {/* photo Field */}
           <div className="mb-4 md:mb-5">
             <label className="block text-gray-900 font-medium mb-2">
-              Photo URl
+              Photo File
             </label>
-            <input
-              type="url"
-              {...register("photo", { required: true })}
-              placeholder="your photo url"
-              className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
-            />
+            <div className="border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent">
+              <input
+                type="file"
+                className="file-input file-input-ghost focus:outline-none "
+                {...register("photo", { required: true })}
+              />
+            </div>
+            {errors.photo?.type === "required" && (
+              <p className="text-red-500 text-xs font-semibold mt-1">
+                Must be Privied Image File
+              </p>
+            )}
+
             {errors.name?.type === "required" && (
               <p className="text-red-500 text-xs font-semibold mt-1">
                 Must be Complete Field

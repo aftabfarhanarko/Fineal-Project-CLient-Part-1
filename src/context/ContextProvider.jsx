@@ -57,6 +57,7 @@ const ContextProvider = ({ children }) => {
     profilesUpdeat,
     googleLogin,
     user,
+    loding
   };
 
   return (
