@@ -16,12 +16,12 @@ const ForgetPassword = () => {
   const handelForget = (data) => {
     forgetPass(data.email).then(() => {
       toast.success("Successfully Forget Password Chack Mail");
-      //  window.open("https://mail.google.com/mail/u/0/?ui=2&fs=1&tf=lg", "_blank");
+      //  window.open("https://mail.google.com/mail/u/0/?ui=2&fs=1&http://localhost:5173/tf=lg", "_blank");
     });
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mx-auto">
+    <div className="flex flex-col justify-center items-center mx-auto  mb-35 px-4 md:mb-10">
       <div className="bg-white/70 rounded-lg p-6 md:p-8 w-full lg:w-8/12 ">
         <h1 className="text-3xl  text-secondary font-bold mb-2">
           Forgot Password

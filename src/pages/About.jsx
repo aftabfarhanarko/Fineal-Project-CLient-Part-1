@@ -134,7 +134,7 @@ export default function About() {
         {/* Header */}
         <div className="mb-8 ">
           <h2 className="mb-2 text-3xl font-bold text-secondary">About Us</h2>
-          <p className="text-md  text-thried font-medium w-[420px]">
+          <p className="text-md  text-thried font-medium max-w-[420px]">
             Enjoy fast, reliable parcel delivery with real-time tracking and
             zero hassle. From personal packages to business shipments — we
             deliver on time, every time.
