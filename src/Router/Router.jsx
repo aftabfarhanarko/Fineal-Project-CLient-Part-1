@@ -8,52 +8,49 @@ import Error from "../Shared/Error";
 import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import PriverRouter from "./PriverRouter";
 
 export const router = createBrowserRouter([
-    {
-        path:"/",
-        hydrateFallbackElement:<Loding></Loding>,
-        element:<MainLayout></MainLayout>,
-        children:[
-            {
-                index:true,
-                element:<Home></Home>
-            },
-            {
-                path:"/mapcover",
-                element:<MapCover></MapCover>
-            },
-            {
-                path:"/about",
-                element:<About></About>
-            },
+  {
+    path: "/",
+    hydrateFallbackElement: <Loding></Loding>,
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
+      {
+        path: "/mapcover",
+        element: <PriverRouter><MapCover></MapCover></PriverRouter>,
+      },
+      {
+        path: "/about",
+        element: <PriverRouter><About></About></PriverRouter>,
+      },
 
-
-
-            {
-                path:"/*",
-                element:<Error></Error>
-
-            }
-        ]
-    },
-    {
-        path:"/",
-        element:<AuthLayout></AuthLayout>,
-        children:[
-            {
-                path:"/login",
-                element:<Login></Login>
-            },
-            {
-                path:"/register",
-                element:<Register></Register>
-            },
-              {
-                path:"/*",
-                element:<Error></Error>
-
-            }
-        ]
-    }
-])
+      {
+        path: "/*",
+        element: <Error></Error>,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/*",
+        element: <Error></Error>,
+      },
+    ],
+  },
+]);
