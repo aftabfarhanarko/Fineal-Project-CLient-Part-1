@@ -2,6 +2,8 @@ import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecoir from "../../Hook/useAxiosSecoir";
+import useAuth from "../../Hook/useAuth";
 
 const SendPricel = () => {
   const {
@@ -11,6 +13,8 @@ const SendPricel = () => {
     formState: { errors },
   } = useForm();
 
+  const axiosApi = useAxiosSecoir();
+  const {user} = useAuth();
   const serviceCenters = useLoaderData();
   const regionsert = serviceCenters.map((r) => r.region);
   const regionsDuplicate = [...new Set(regionsert)];
@@ -68,51 +72,50 @@ const SendPricel = () => {
       }
     }
 
-  Swal.fire({
-  title: "Confirm Delivery Cost",
-  text: `Total delivery charge will be ${cost} taka. Do you want to continue?`,
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonText: "Yes, Confirm",
-  cancelButtonText: "No, Cancel",
+    Swal.fire({
+      title: "Confirm Delivery Cost",
+      text: `Total delivery charge will be ${cost} taka. Do you want to continue?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Confirm",
+      cancelButtonText: "No, Cancel",
 
-  customClass: {
-    popup: "rounded-2xl shadow-xl",
-    title: "text-lg font-semibold text-gray-800",
-    htmlContainer: "text-gray-600",
-    actions: "flex gap-3 justify-end",
-    confirmButton:
-      "bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-xl",
-    cancelButton:
-      "bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded-xl",
-  },
+      customClass: {
+        popup: "rounded-2xl shadow-xl",
+        title: "text-lg font-semibold text-gray-800",
+        htmlContainer: "text-gray-600",
+        actions: "flex gap-3 justify-end",
+        confirmButton:
+          "bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-xl",
+        cancelButton:
+          "bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded-xl",
+      },
 
-  buttonsStyling: false,
-  backdrop: `rgba(0,0,0,0.45)`,
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    
-
-
-
-    // Swal.fire({
-    //   icon: "success",
-    //   title: "Parcel Successfully Created",
-    //   text: "Your parcel has been added and is now ready for processing.",
-    //   confirmButtonText: "OK",
-    //   customClass: {
-    //     popup: "rounded-2xl shadow-lg",
-    //     title: "text-lg font-bold text-green-700",
-    //     htmlContainer: "text-gray-700",
-    //     confirmButton:
-    //       "bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-xl",
-    //   },
-    //   buttonsStyling: false,
-    // });
-  }
-});
-
+      buttonsStyling: false,
+      backdrop: `rgba(0,0,0,0.45)`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosApi.post("parcel", data)
+        .then(res => {
+          console.log("After Data Send DB ", res.data);
+          
+        })
+        Swal.fire({
+          icon: "success",
+          title: "Parcel Successfully Created",
+          text: "Your parcel has been added and is now ready for processing.",
+          confirmButtonText: "OK",
+          customClass: {
+            popup: "rounded-2xl shadow-lg",
+            title: "text-lg font-bold text-green-700",
+            htmlContainer: "text-gray-700",
+            confirmButton:
+              "bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-xl",
+          },
+          buttonsStyling: false,
+        });
+      }
+    });
 
     console.log("cost", cost);
   };
@@ -209,7 +212,7 @@ const SendPricel = () => {
                 <input
                   type="text"
                   {...register("name", { required: true })}
-                  placeholder="Sender Name"
+                  defaultValue={user.displayName}
                   className="w-full px-4 py-2.5 md:py-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm  border-black/50 placeholder:text-black/90  md:text-base"
                 />
                 {errors.name?.type === "required" && (
@@ -218,7 +221,7 @@ const SendPricel = () => {
                   </p>
                 )}
               </div>
-
+              {/* email */}
               <div>
                 <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
                   Sender Email
@@ -226,7 +229,9 @@ const SendPricel = () => {
                 <input
                   type="email"
                   {...register("senderemail", { required: true })}
-                  placeholder="sender email"
+                  
+                  // defaultValue={user.email}
+                  // readOnly
                   className="w-full px-4 py-2.5 md:py-3 border border-black/50 placeholder:text-black/90 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
                 />
                 {errors.senderemail?.type === "required" && (
