@@ -145,8 +145,37 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
         ""
       ) : (
         <div className="bg-white border-t border-base-300 rounded-b-xl shadow py-5 transition duration-500">
+          {/* Navigation */}
+          <ul className="md:hidden font-medium text-[#1F1F1F] text-[15px] flex flex-col gap-4 items-center">
+            {/* Top 3 items */}
+            <li className="flex flex-wrap justify-center gap-5">
+              <Link to="/" className="hover:text-blue-600">
+                Services
+              </Link>
+              <Link to="/wqd" className="hover:text-blue-600">
+                Pricing
+              </Link>
+              <Link to="/raider" className="hover:text-blue-600">
+                Be a Rider
+              </Link>
+            </li>
+
+            {/* Divider spacing */}
+            <div className="w-full border-b border-base-200"></div>
+
+            {/* Bottom 2 items */}
+            <li className="flex justify-center gap-6">
+              <Link to="/about" className="hover:text-blue-600">
+                About Us
+              </Link>
+              <Link to="/mapcover" className="hover:text-blue-600">
+                Coverage
+              </Link>
+            </li>
+          </ul>
+
           {/* Profile */}
-          <div className="flex justify-center  items-center gap-4 mb-3">
+          <div className="flex  mt-3 justify-center  items-center gap-4 mb-3">
             {user && (
               <img
                 className="w-10 h-10 rounded-full object-cover"
@@ -186,35 +215,6 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
               </Link>
             )}
           </div>
-
-          {/* Navigation */}
-          <ul className="md:hidden font-medium text-[#1F1F1F] text-[15px] flex flex-col gap-4 items-center">
-            {/* Top 3 items */}
-            <li className="flex flex-wrap justify-center gap-5">
-              <Link to="/" className="hover:text-blue-600">
-                Services
-              </Link>
-              <Link to="/wqd" className="hover:text-blue-600">
-                Pricing
-              </Link>
-              <Link to="/raider" className="hover:text-blue-600">
-                Be a Rider
-              </Link>
-            </li>
-
-            {/* Divider spacing */}
-            <div className="w-full border-b border-base-200"></div>
-
-            {/* Bottom 2 items */}
-            <li className="flex justify-center gap-6">
-              <Link to="/about" className="hover:text-blue-600">
-                About Us
-              </Link>
-              <Link to="/mapcover" className="hover:text-blue-600">
-                Coverage
-              </Link>
-            </li>
-          </ul>
         </div>
       )}
     </>
