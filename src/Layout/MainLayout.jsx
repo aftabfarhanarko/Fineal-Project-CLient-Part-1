@@ -7,10 +7,10 @@ import { Toaster } from "sonner";
 const MainLayout = () => {
   return (
     <div className=" bg-base-300">
-      <div className="max-w-7xl mx-auto px-3 md:px-0">
-        <nav>
+        <nav className="w-10/12 mx-auto">
           <Navbar></Navbar>
         </nav>
+      <div className="max-w-7xl mx-auto px-3 md:px-0">
         <main>
           <Outlet></Outlet>
         </main>

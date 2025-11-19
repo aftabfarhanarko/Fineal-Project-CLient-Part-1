@@ -13,12 +13,17 @@ import ForgetPassword from "../Auth/ForgetPassword";
 import RiderBook from "../pages/Raider/RiderBook";
 import Price from "../pages/Price";
 import SendPricel from "../pages/SendPricel/SendPricel";
+import Dashbord from "../pages/Dashbord/Dashbord";
+import DashbordLayout from "../Layout/DashbordLayout";
+import MyParcel from "../pages/Dashbord/MyParcel";
+import AllDrivers from "../pages/Dashbord/AllDrivers";
+import ParcelDetlics from "../pages/Dashbord/ParcelDetlics";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    hydrateFallbackElement: <Loding></Loding>,
     element: <MainLayout></MainLayout>,
+    hydrateFallbackElement: <Loding></Loding>,
     children: [
       {
         index: true,
@@ -59,6 +64,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout></AuthLayout>,
+    hydrateFallbackElement:<Loding></Loding>,
     children: [
       {
         path: "/login",
@@ -78,4 +84,30 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/dasbord",
+    element:<PriverRouter><DashbordLayout></DashbordLayout></PriverRouter>,
+    children:[
+      {
+        index:true,
+        element:<Dashbord></Dashbord>
+      },
+      {
+        path:"/dasbord/myparcel",
+        Component:MyParcel
+      },
+      {
+        path:"/dasbord/deliveries",
+        Component:AllDrivers
+      },
+      {
+        path:"/dasbord/ParcelDetlics",
+        Component:ParcelDetlics
+      },
+      {
+        path:"/dasbord/manageParcel",
+        Component:ParcelDetlics
+      }
+    ]
+  } 
 ]);

@@ -229,9 +229,8 @@ const SendPricel = () => {
                 <input
                   type="email"
                   {...register("senderemail", { required: true })}
-                  
-                  // defaultValue={user.email}
-                  // readOnly
+                  defaultValue={user.email}
+                  readOnly
                   className="w-full px-4 py-2.5 md:py-3 border border-black/50 placeholder:text-black/90 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
                 />
                 {errors.senderemail?.type === "required" && (

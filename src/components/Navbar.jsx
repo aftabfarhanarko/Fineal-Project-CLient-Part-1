@@ -49,6 +49,11 @@ const Navbar = () => {
                   Send Parcel
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dasbord" className="">
+                 My Parcel
+                </NavLink>
+              </li>
               
              
               
