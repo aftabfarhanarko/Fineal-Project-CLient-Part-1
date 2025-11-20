@@ -1,9 +1,10 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecoir from "../../Hook/useAxiosSecoir";
 import useAuth from "../../Hook/useAuth";
+import { toast } from "sonner";
 
 const SendPricel = () => {
   const {
@@ -12,7 +13,7 @@ const SendPricel = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+const naviget = useNavigate()
   const axiosApi = useAxiosSecoir();
   const {user} = useAuth();
   const serviceCenters = useLoaderData();
@@ -72,6 +73,7 @@ const SendPricel = () => {
       }
     }
 
+    data.totalCost = cost; // total delivery cost saved Database
     Swal.fire({
       title: "Confirm Delivery Cost",
       text: `Total delivery charge will be ${cost} taka. Do you want to continue?`,
@@ -98,7 +100,8 @@ const SendPricel = () => {
         axiosApi.post("parcel", data)
         .then(res => {
           console.log("After Data Send DB ", res.data);
-          
+           toast.success("Your Parcel Creat Successfully")
+           naviget("/dasbord/myparcel")
         })
         Swal.fire({
           icon: "success",

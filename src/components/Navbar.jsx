@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-base-100 shadow-sm rounded-lg  md:rounded-xl ">
+      <div className="bg-base-100 shadow-sm md:rounded-lg  md:rounded-xl ">
         <div className="navbar  w-11/12 mx-auto py-5">
           <div className="navbar-start">
             <Logo></Logo>
@@ -34,11 +34,15 @@ const Navbar = () => {
                   Coverage
                 </NavLink>
               </li>
+
               <li>
                 <NavLink to="/raider" className=" ">
                   Be a Rider
                 </NavLink>
               </li>
+              {
+                user && <> 
+             
               <li>
                 <NavLink to="/price" className="">
                   Pricing
@@ -54,6 +58,8 @@ const Navbar = () => {
                   My Parcel
                 </NavLink>
               </li>
+              </>
+               }
             </ul>
           </div>
 
@@ -144,7 +150,7 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
       {hide ? (
         ""
       ) : (
-        <div className="bg-white border-t border-base-300 rounded-b-xl shadow py-5 transition duration-500">
+        <div className="md:hidden bg-white border-t border-base-300 rounded-b-xl shadow py-5 transition duration-500">
           {/* Navigation */}
           <ul className="md:hidden font-medium text-[#1F1F1F] text-[15px] flex flex-col gap-4 items-center">
             {/* Top 3 items */}
@@ -202,17 +208,35 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
                 </button>
               </Link>
             ) : (
-              <Link to="/login">
-                {" "}
-                <button
-                  className="
+              <div className="flex gap-3">
+                <Link to="/login">
+                  {" "}
+                  <button
+                    className="
                  px-6 py-2  text-[#82aa09]
   bg-white  outline  rounded-md   transition-all duration-300 ease-out   bg-gradient-to-r hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300  hover:text-black hover:shadow-xl  hover:outline-none font-semibold hover:scale-100  active:scale-95  focus:outline-none                        
                   "
-                >
-                  Login
-                </button>
-              </Link>
+                  >
+                    Login
+                  </button>
+                </Link>
+                <Link to="/register">
+                  {" "}
+                  <button
+                    className="
+                   px-6 py-2 
+   font-medium  rounded-md
+bg-gradient-to-r from-[#b2e36d] via-[#b8e04e] to-[#bae240] 
+  font-semibold
+hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300 ease-out  hover:shadow-xl 
+  hover:scale-105 active:scale-95 
+  focus:outline-none 
+                  "
+                  >
+                    Register
+                  </button>
+                </Link>
+              </div>
             )}
           </div>
         </div>

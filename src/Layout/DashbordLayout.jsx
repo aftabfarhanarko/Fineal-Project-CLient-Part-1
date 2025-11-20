@@ -19,7 +19,7 @@ import { HiHomeModern } from "react-icons/hi2";
 import useAuth from "../Hook/useAuth";
 
 const DashbordLayout = () => {
-  const { user } = useAuth();
+  const { user,userLogOut } = useAuth();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -104,7 +104,7 @@ const DashbordLayout = () => {
             </li>
             <div className="mt-">
               {/* List item */}
-              <p className="py-3 border-b border-gray-300 text-secondary">
+              <p className="py-3 border-b  border-gray-300 text-secondary">
                 MENU
               </p>
 
@@ -205,7 +205,7 @@ const DashbordLayout = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <Link onClick={() => userLogOut()}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Logout"
                   >
