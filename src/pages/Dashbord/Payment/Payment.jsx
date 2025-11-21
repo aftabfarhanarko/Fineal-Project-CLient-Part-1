@@ -3,10 +3,11 @@ import React from "react";
 import { useParams } from "react-router";
 import useAxiosSecoir from "../../../Hook/useAxiosSecoir";
 import Loding from "../../../Shared/Loding";
+import { toast } from "sonner";
 
 const Payment = () => {
   const { parcelId } = useParams();
-  console.log(parcelId);
+
   const axiosSecoir = useAxiosSecoir();
 
   const { isLoading, data } = useQuery({
@@ -16,6 +17,7 @@ const Payment = () => {
       return result.data.result;
     },
   });
+
   const handelPayment = async () => {
     try {
       const paymentInfo = {
@@ -26,11 +28,11 @@ const Payment = () => {
       };
 
       const postPayment = await axiosSecoir.post("/checkout", paymentInfo);
-
       // Redirect to Stripe Checkout
       window.location.href = postPayment.data.url;
+      toast.success("Payment Successfully ")
     } catch (error) {
-      console.error(error);
+      toast.warning(error?.code);
     }
   };
 

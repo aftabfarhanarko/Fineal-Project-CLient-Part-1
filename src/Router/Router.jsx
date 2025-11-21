@@ -19,6 +19,8 @@ import MyParcel from "../pages/Dashbord/MyParcel";
 import AllDrivers from "../pages/Dashbord/AllDrivers";
 import ParcelDetlics from "../pages/Dashbord/ParcelDetlics";
 import Payment from "../pages/Dashbord/Payment/Payment";
+import SuccessPage from "../pages/Dashbord/Payment/SuccessPage";
+import CancelPage from "../pages/Dashbord/Payment/CancelPage";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +111,13 @@ export const router = createBrowserRouter([
         path:"/dasbord/payment/:parcelId",
         Component:Payment
         
+      },
+      {
+        path:"/dasbord/success",
+        Component:SuccessPage
+      },{
+        path:"/dasbord/cancel",
+        Component:CancelPage
       }
     ]
   } 

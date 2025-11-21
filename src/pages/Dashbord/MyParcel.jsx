@@ -80,6 +80,23 @@ const MyParcel = () => {
     });
   };
 
+  // payment-checkout
+  const handelPayment = async (parcel) => {
+    console.log(parcel);
+    try {
+      const paymentInfo = {
+        totalCost: parcel?.totalCost,
+        parcelid: parcel?._id,
+        senderemail: parcel?.senderemail,
+        percilname: parcel?.percilname,
+      };
+
+      const res = await axiosData.post("/payment-checkout", paymentInfo);
+      window.location.href = res.data.url;
+    } catch (error) {
+      toast.warning(error?.code);
+    }
+  };
   return (
     <div>
       <h1 className=" text-2xl font-bold mt-5  mb-10">
@@ -141,12 +158,12 @@ const MyParcel = () => {
                     {item.paymentStutas === "paid" ? (
                       <span className="text-green-600">Paid</span>
                     ) : (
-                      <Link
-                        to={`/dasbord/payment/${item._id}`}
+                      <button
+                        onClick={() => handelPayment(item)}
                         className="inline-block px-6 py-1.5 bg-lime-400 text-black font-semibold rounded-lg  hover:bg-lime-500 transition duration-300"
                       >
                         Pay
-                      </Link>
+                      </button>
                     )}
                   </td>
 
