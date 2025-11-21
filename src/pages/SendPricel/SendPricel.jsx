@@ -13,9 +13,9 @@ const SendPricel = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-const naviget = useNavigate()
+  const naviget = useNavigate();
   const axiosApi = useAxiosSecoir();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const serviceCenters = useLoaderData();
   const regionsert = serviceCenters.map((r) => r.region);
   const regionsDuplicate = [...new Set(regionsert)];
@@ -97,12 +97,11 @@ const naviget = useNavigate()
       backdrop: `rgba(0,0,0,0.45)`,
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosApi.post("parcel", data)
-        .then(res => {
-          console.log("After Data Send DB ", res.data);
-           toast.success("Your Parcel Creat Successfully")
-           naviget("/dasbord/myparcel")
-        })
+        axiosApi.post("parcel", data).then(() => {
+          // console.log("After Data Send DB ", res.data);
+          naviget("/dasbord/myparcel");
+          toast.success("Your Parcel Creat Successfully");
+        });
         Swal.fire({
           icon: "success",
           title: "Parcel Successfully Created",

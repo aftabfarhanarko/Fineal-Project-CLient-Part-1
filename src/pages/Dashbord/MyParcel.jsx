@@ -92,7 +92,7 @@ const MyParcel = () => {
       };
 
       const res = await axiosData.post("/payment-checkout", paymentInfo);
-      window.location.href = res.data.url;
+      window.location.assign(res.data.url) 
     } catch (error) {
       toast.warning(error?.code);
     }
@@ -110,7 +110,7 @@ const MyParcel = () => {
                 <th className="p-4">Srl No</th>
                 <th className="p-4">Parcel Info</th>
                 <th className="p-4">Sender Info</th>
-                <th className="p-4">Reciver Info</th>
+                {/* <th className="p-4">Reciver Info</th> */}
                 <th className="p-4">Tracking Number</th>
                 <th className="p-4">Delivery Status</th>
                 <th className="p-4">Payment</th>
@@ -138,15 +138,15 @@ const MyParcel = () => {
                     <p className="font-semibold">{item.senderRegion}</p>
                     <p className="font-medium">{item.senderdistick}</p>
                   </td>
-                  {/* Recipient Info */}
+                  {/* Recipient Info
                   <td className="p-4">
-                    {/* <p className="font-semibold">{item.percilname}</p> */}
+                    <p className="font-semibold">{item.percilname}</p>
 
                     <p className="text-zinc-800 font-medium">
                       {item.reciverRegion}
                     </p>
                     <p className="text-zinc-800">{item.reciverDistrick}</p>
-                  </td>
+                  </td> */}
 
                   {/* Tracking */}
                   <td className="p-4">{item.recivercontact}</td>
@@ -155,7 +155,7 @@ const MyParcel = () => {
 
                   {/* Payment */}
                   <td className="p-4 text-green-600 font-semibold">
-                    {item.paymentStutas === "paid" ? (
+                    {item.paymentStutas === 'Paid' ? (
                       <span className="text-green-600">Paid</span>
                     ) : (
                       <button

@@ -21,6 +21,7 @@ import ParcelDetlics from "../pages/Dashbord/ParcelDetlics";
 import Payment from "../pages/Dashbord/Payment/Payment";
 import SuccessPage from "../pages/Dashbord/Payment/SuccessPage";
 import CancelPage from "../pages/Dashbord/Payment/CancelPage";
+import ViewDetlics from "../pages/Dashbord/ViewDetlics";
 
 export const router = createBrowserRouter([
   {
@@ -42,9 +43,13 @@ export const router = createBrowserRouter([
         element: <About></About>,
       },
       {
-       path:"/send_parcel",
-       loader:() => fetch("warehouses.json").then(res => res.json()),
-       element:<PriverRouter><SendPricel></SendPricel></PriverRouter>,
+        path: "/send_parcel",
+        loader: () => fetch("warehouses.json").then((res) => res.json()),
+        element: (
+          <PriverRouter>
+            <SendPricel></SendPricel>
+          </PriverRouter>
+        ),
       },
       {
         path: "/raider",
@@ -56,7 +61,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/price",
-        element:<PriverRouter><Price></Price></PriverRouter>
+        element: (
+          <PriverRouter>
+            <Price></Price>
+          </PriverRouter>
+        ),
       },
       {
         path: "/*",
@@ -67,7 +76,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout></AuthLayout>,
-    hydrateFallbackElement:<Loding></Loding>,
+    hydrateFallbackElement: <Loding></Loding>,
     children: [
       {
         path: "/login",
@@ -88,37 +97,45 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:"/dasbord",
-    element:<PriverRouter><DashbordLayout></DashbordLayout></PriverRouter>,
-    children:[
+    path: "/dasbord",
+    element: (
+      <PriverRouter>
+        <DashbordLayout></DashbordLayout>
+      </PriverRouter>
+    ),
+    children: [
       {
-        index:true,
-        element:<Dashbord></Dashbord>
+        index: true,
+        element: <Dashbord></Dashbord>,
       },
       {
-        path:"/dasbord/myparcel",
-        Component:MyParcel
+        path: "/dasbord/myparcel",
+        Component: MyParcel,
       },
       {
-        path:"/dasbord/deliveries",
-        Component:AllDrivers
+        path: "/dasbord/deliveries",
+        Component: AllDrivers,
       },
       {
-        path:"/dasbord/ParcelDetlics",
-        Component:ParcelDetlics
+        path: "/dasbord/ParcelDetlics",
+        Component: ParcelDetlics,
       },
       {
-        path:"/dasbord/payment/:parcelId",
-        Component:Payment
-        
+        path: "/dasbord/payment/:parcelId",
+        Component: Payment,
       },
       {
-        path:"/dasbord/success",
-        Component:SuccessPage
-      },{
-        path:"/dasbord/cancel",
-        Component:CancelPage
-      }
-    ]
-  } 
+        path: "/dasbord/success",
+        Component: SuccessPage,
+      },
+      {
+        path: "/dasbord/cancel",
+        Component: CancelPage,
+      },
+      // {
+      //   path: "/dasbord/viewDetlics/:id",
+      //   Component: ViewDetlics
+      // },
+    ],
+  },
 ]);
