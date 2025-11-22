@@ -17,10 +17,13 @@ const SendPricel = () => {
   const axiosApi = useAxiosSecoir();
   const { user } = useAuth();
   const serviceCenters = useLoaderData();
+
   const regionsert = serviceCenters.map((r) => r.region);
   const regionsDuplicate = [...new Set(regionsert)];
   const senderRegion = useWatch({ control, name: "senderRegion" });
+  
   const reciverRegion = useWatch({ control, name: "reciverRegion" });
+
 
   const districtsByRegion = (region) => {
     const regionDistricts = serviceCenters.filter((d) => d.region === region);

@@ -35,7 +35,7 @@ const Login = () => {
     googleLogin()
       .then((data) => {
         const savedDB = {
-          displayName: data.user.email,
+          displayName: data.user.displayName,
           photoURL: data.user.photoURL,
           email: data.user.email,
           // password:data.user.password,

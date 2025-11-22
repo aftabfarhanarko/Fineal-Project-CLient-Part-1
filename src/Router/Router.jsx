@@ -53,6 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/raider",
+         loader: () => fetch("warehouses.json").then((res) => res.json()),
         element: (
           <PriverRouter>
             <RiderBook></RiderBook>

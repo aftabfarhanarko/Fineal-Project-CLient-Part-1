@@ -81,21 +81,23 @@ const Register = () => {
 
   const handleGoogleRegister = () => {
     googleLogin()
-    .then((data) => {
-      const savedDB = {
-            displayName:data.user.email,
-            photoURL:data.user.photoURL,
-            email:data.user.email,
-            // password:data.user.password,
-          };
-          axiosSecoir.post("/svuser", savedDB)
-          .then(res => {
-            console.log("Google LOgin",res);
-            
-            toast.success("Creat User Successfully");
-            naviget("/");
-          }) 
-    });
+      .then((data) => {
+        const savedDB = {
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL,
+          email: data.user.email,
+          // password:data.user.password,
+        };
+        axiosSecoir.post("/svuser", savedDB).then((res) => {
+          console.log("Google LOgin", res);
+
+          toast.success("Creat User Successfully");
+          naviget("/");
+        });
+      })
+      .catch((err) => {
+        toast.warning(err.code);
+      });
   };
 
   return (

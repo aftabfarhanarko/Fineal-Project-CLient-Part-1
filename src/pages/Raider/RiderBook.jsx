@@ -1,13 +1,29 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import rider from "../../assets/agent-pending.png";
+import { useLoaderData } from "react-router";
 const RiderBook = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
-  const handelData = (data) => {
+  const serviceCenters = useLoaderData();
+
+  const regionsert = serviceCenters.map((r) => r.region);
+  const regionsDuplicate = [...new Set(regionsert)];
+  console.log(regionsDuplicate);
+
+  const reiderReguon = useWatch({ control, name: "yourRegion" });
+
+  const handelRieder = (region) => {
+    const regionDistrick = serviceCenters.filter((d) => d.region === region);
+    const districk = regionDistrick.map((d) => d.district);
+    return districk;
+  };
+
+  const handelFrom = (data) => {
     console.log(data);
   };
 
@@ -23,179 +39,221 @@ const RiderBook = () => {
           </p>
         </div>
 
-        <div className=" flex flex-col-reverse md:flex-row  md:justify-between  md:items-center">
+        <div className=" flex flex-col-reverse md:flex-row gap-10  md:justify-between  md:items-center">
           {/* Form Section */}
-          <div className="bg-white border  border-base-300 rounded-lg mt-10   p-6 sm:p-8 md:p-10">
+          <div className="bg-white border flex-1  border-base-300 rounded-lg mt-10   p-6 sm:p-8 md:p-10">
             <h2 className="text-xl  font-bold text-thried mb-6 sm:mb-8">
               Tell us about yourself
             </h2>
 
-            <form onSubmit={handleSubmit(handelData)} className="space-y-3.5">
-              {/* Name & Age Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="border-t md:border-0 pt-4 md:pt-0 border-b pb-4 md:pb-0 border-base-300">
+              <h3 className="font-semibold text-lg text-secondary mb-3">
+                Reciver Details
+              </h3>
+              <form
+                onSubmit={handleSubmit(handelFrom)}
+                className="space-y-5 mt-4 md:mt-7"
+              >
+                {/* Your Name */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
                     Your Name
                   </label>
                   <input
                     type="text"
-                    {...register("name", { required: true })}
+                    {...register("yourName", { required: true })}
                     placeholder="Your Name"
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
-                  {errors.name?.type === "required" && (
+                  {errors.yourName?.type === "required" && (
                     <p className="text-red-500 text-xs font-semibold mt-1">
-                      Please Fillup Name
+                      Please Fillup Your Name
                     </p>
                   )}
                 </div>
 
+                {/* Driving License Number */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
-                    Yor Ageo
+                    Driving License Number
                   </label>
                   <input
-                    type="number"
-                    name="age"
-                    {...register("age", { required: true })}
-                    placeholder="Yor age"
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+                    type="text"
+                    {...register("drivingLicenseNumber", { required: true })}
+                    placeholder="Driving License Number"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
-                  {errors.age?.type === "required" && (
+                  {errors.drivingLicenseNumber?.type === "required" && (
                     <p className="text-red-500 text-xs font-semibold mt-1">
-                      Please Fillup Your Ageo
+                      Please Fillup Driving License Number
                     </p>
                   )}
                 </div>
-              </div>
 
-              {/* Email & City Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                {/* Your Email */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
                     Your Email
                   </label>
                   <input
                     type="email"
-                    {...register("email", { required: true })}
+                    {...register("yourEmail", { required: true })}
                     placeholder="Your Email"
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
-                  {errors.email?.type === "required" && (
+                  {errors.yourEmail?.type === "required" && (
                     <p className="text-red-500 text-xs font-semibold mt-1">
-                      Fillup Your Email
+                      Please Fillup Your Email
                     </p>
                   )}
                 </div>
 
+                {/* Your Region */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
-                    Your City
+                    Your Region
                   </label>
                   <select
-                    name="city"
-                    {...register("city", { required: true })}
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base text-gray-500"
+                    {...register("yourRegion", { required: true })}
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base select"
+                    defaultValue=""
                   >
-                    <option value="">Select your region</option>
-                    <option value="dhaka">Dhaka</option>
-                    <option value="chittagong">Chittagong</option>
-                    <option value="rajshahi">Rajshahi</option>
-                    <option value="khulna">Khulna</option>
-                    <option value="sylhet">Sylhet</option>
-                    <option value="rangpur">Rangpur</option>
-                    <option value="barisal">Barisal</option>
-                    <option value="mymensingh">Mymensingh</option>
+                    <option value="" disabled>
+                      Select your Region
+                    </option>
+                    {regionsDuplicate.map((region, i) => (
+                      <option key={i} value={region}>
+                        {region}
+                      </option>
+                    ))}
                   </select>
-                  {errors.city?.type === "required" && (
-                    <p className="text-red-500 text-xs font-semibold mt-1">
-                      Fillup Your City
-                    </p>
-                  )}
                 </div>
-              </div>
 
-              {/* NID & Contact Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                {/* Your District */}
+                <div>
+                  <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
+                    Your District
+                  </label>
+                  <select
+                    {...register("yourDistrict")}
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base select"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select your District
+                    </option>
+                    {handelRieder(reiderReguon).map((district, i) => (
+                      <option key={i} value={district}>
+                        {district}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* NID No */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
                     NID No
                   </label>
                   <input
-                    type="number"
-                    name="nid"
-                    {...register("nid", { required: true })}
+                    type="text"
+                    {...register("nidNo", { required: true })}
                     placeholder="NID"
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
-                  {errors.nid?.type === "required" && (
+                  {errors.nidNo?.type === "required" && (
                     <p className="text-red-500 text-xs font-semibold mt-1">
-                      Please Fillup Your NID No
+                      Please Fillup NID No
                     </p>
                   )}
                 </div>
 
+                {/* Phone Number */}
                 <div>
                   <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
-                    Contact
+                    Phone Number
                   </label>
                   <input
                     type="tel"
-                    name="contact"
-                    {...register("contact", { required: true })}
-                    placeholder="Contact"
-                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base"
+                    {...register("phoneNumber", { required: true })}
+                    placeholder="Phone Number"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
-                  {errors.contact?.type === "required" && (
+                  {errors.phoneNumber?.type === "required" && (
                     <p className="text-red-500 text-xs font-semibold mt-1">
-                      Please Provied Your Ph Number
+                      Please Fillup Phone Number
                     </p>
                   )}
                 </div>
-              </div>
 
-              {/* Wire-house Selection */}
-              <div>
-                <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
-                  Which wire-house you want to work?
-                </label>
-                <select
-                  name="house"
-                  {...register("house", { required: true })}
-                  className="w-full px-4 py-2.5 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm md:text-base text-gray-500"
+                {/* Bike Brand Model and Year */}
+                <div>
+                  <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
+                    Bike Brand Model and Year
+                  </label>
+                  <input
+                    type="text"
+                    {...register("bikeBrandModelAndYear", { required: true })}
+                    placeholder="Bike Brand Model and Year"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
+                  />
+                  {errors.bikeBrandModelAndYear?.type === "required" && (
+                    <p className="text-red-500 text-xs font-semibold mt-1">
+                      Please Fillup Bike Brand Model and Year
+                    </p>
+                  )}
+                </div>
+
+                {/* Bike Registration Number */}
+                <div>
+                  <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
+                    Bike Registration Number
+                  </label>
+                  <input
+                    type="text"
+                    {...register("bikeRegistrationNumber", { required: true })}
+                    placeholder="Bike Registration Number"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
+                  />
+                  {errors.bikeRegistrationNumber?.type === "required" && (
+                    <p className="text-red-500 text-xs font-semibold mt-1">
+                      Please Fillup Bike Registration Number
+                    </p>
+                  )}
+                </div>
+
+                {/* Tell Us About Yourself */}
+                <div>
+                  <label className="block text-gray-900 font-medium mb-2 text-sm sm:text-base">
+                    Tell Us About Yourself
+                  </label>
+                  <textarea
+                    {...register("tellUsAboutYourself", { required: true })}
+                    placeholder="Tell Us About Yourself"
+                    className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
+                  ></textarea>
+                  {errors.tellUsAboutYourself?.type === "required" && (
+                    <p className="text-red-500 text-xs font-semibold mt-1">
+                      Please Fillup Tell Us About Yourself
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-lime-300 py-2 rounded-md mt-5 font-semibold hover:bg-lime-400 transition-colors"
                 >
-                  <option value="">Select wire-house</option>
-                  <option value="dhaka-central">Dhaka Central Warehouse</option>
-                  <option value="chittagong-port">
-                    Chittagong Port Warehouse
-                  </option>
-                  <option value="sylhet-north">Sylhet North Warehouse</option>
-                  <option value="rajshahi-west">Rajshahi West Warehouse</option>
-                </select>
-                {errors.house?.type === "required" && (
-                  <p className="text-red-500 text-xs font-semibold mt-1">
-                    Provied your House Sections
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold py-2.5 md:py-3 rounded-lg transition duration-200 text-sm md:text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-              >
-                Submit
-              </button>
-            </form>
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div>
-            <div className=" bg-base-300 h-full rounded-xl mt-7 md:mt-0">
+          <div className="flex-1">
+            <div className="  h-full rounded-xl mt-7 md:mt-0">
               <img src={rider}></img>
             </div>
-            <p className=" text-lg font-semibold mt-2.5 text-center text-secondary">
-              Delivery Men
-            </p>
           </div>
         </div>
       </div>
