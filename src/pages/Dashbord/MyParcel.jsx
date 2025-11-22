@@ -5,7 +5,11 @@ import Loding from "../../Shared/Loding";
 import Parcel from "./Parcel";
 import ParcelCard from "./Parcel";
 import { FiEdit } from "react-icons/fi";
-import { MdOutlineDeleteOutline, MdOutlineRateReview } from "react-icons/md";
+import {
+  MdCheckCircle,
+  MdOutlineDeleteOutline,
+  MdOutlineRateReview,
+} from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 import { Link } from "react-router";
@@ -90,8 +94,7 @@ const MyParcel = () => {
         percilname: parcel?.percilname,
       };
       const res = await axiosData.post("/payment-checkout", paymentInfo);
-      window.location.assign(res.data.url) ;
-
+      window.location.assign(res.data.url);
     } catch (error) {
       toast.warning(error?.code);
     }
@@ -101,105 +104,106 @@ const MyParcel = () => {
       <h1 className=" text-2xl font-bold mt-5  mb-10 ">
         My Send Parcel : {data?.length}
       </h1>
-     <div className="mt-6">
-  <div className="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-100">
-    <table className="min-w-full text-sm">
-      <thead className="bg-gray-100 text-left text-gray-700">
-        <tr>
-          <th className="p-4 font-semibold">Srl No</th>
-          <th className="p-4 font-semibold">Parcel Info</th>
-          <th className="p-4 font-semibold">Sender Info</th>
-          <th className="p-4 font-semibold">Tracking Number</th>
-          <th className="p-4 font-semibold">Delivery Status</th>
-          <th className="p-4 font-semibold">Payment</th>
-          <th className="p-4 font-semibold">Action</th>
-        </tr>
-      </thead>
+      <div className="mt-6">
+        <div className="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-100">
+          <table className="min-w-full text-sm">
+            <thead className="bg-gray-100 text-left text-gray-700">
+              <tr>
+                <th className="p-4 font-semibold">Srl No</th>
+                <th className="p-4 font-semibold">Parcel Info</th>
+                <th className="p-4 font-semibold">Sender Info</th>
+                <th className="p-4 font-semibold">Tracking Number</th>
+                <th className="p-4 font-semibold">Delivery Status</th>
+                <th className="p-4 font-semibold">Payment</th>
+                <th className="p-4 font-semibold">Action</th>
+              </tr>
+            </thead>
 
-      <tbody>
-        {data.map((item, i) => (
-          <tr
-            key={i}
-            className="border-b border-gray-200 hover:bg-gray-50 transition"
-          >
-            {/* Serial */}
-            <td className="p-4 font-medium text-gray-900">{i + 1}</td>
+            <tbody>
+              {data.map((item, i) => (
+                <tr
+                  key={i}
+                  className="border-b border-gray-200 hover:bg-gray-50 transition"
+                >
+                  {/* Serial */}
+                  <td className="p-4 font-medium text-gray-900">{i + 1}</td>
 
-            {/* Parcel Info */}
-            <td className="p-4">
-              <p className="font-semibold text-gray-900">{item.percilname}</p>
-              <p className="text-xs text-gray-500">{item.parcelType}</p>
-            </td>
+                  {/* Parcel Info */}
+                  <td className="p-4">
+                    <p className="font-semibold text-gray-900">
+                      {item.percilname}
+                    </p>
+                    <p className="text-xs text-gray-500">{item.parcelType}</p>
+                  </td>
 
-            {/* Sender Info */}
-            <td className="p-4">
-              <p className="font-semibold text-gray-900">
-                {item.senderRegion}
-              </p>
-              <p className="text-sm text-gray-600">{item.senderdistick}</p>
-            </td>
+                  {/* Sender Info */}
+                  <td className="p-4">
+                    <p className="font-semibold text-gray-900">
+                      {item.senderRegion}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {item.senderdistick}
+                    </p>
+                  </td>
 
-            {/* Tracking */}
-            <td className="p-4 text-gray-800">{item.recivercontact}</td>
+                  {/* Tracking */}
+                  <td className="p-4 text-gray-800">{item.recivercontact}</td>
 
-            {/* Delivery Status */}
-            <td className="p-4 text-gray-800">Id Now</td>
+                  {/* Delivery Status */}
+                  <td className="p-4 text-gray-800">Id Now</td>
 
-            {/* Payment */}
-            <td className="p-4 font-semibold">
-              {item.paymentStutas === "Paid" ? (
-                <span className="text-green-600 bg-green-100 px-3 py-1 rounded-full text-xs">
-                  Paid
-                </span>
-              ) : (
-                <button
-                  onClick={() => handelPayment(item)}
-                  className="px-5 py-1.5 bg-lime-400 text-black rounded-lg font-semibold 
+                  {/* Payment */}
+                  <td className="p-4 font-semibold">
+                    {item.paymentStutas === "Paid" ? (
+                      <span className="text-green-600 bg-green-100 px-3 py-1 rounded-full text-xs">
+                        Paid
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handelPayment(item)}
+                        className="px-5 py-1.5 bg-lime-400 text-black rounded-lg font-semibold 
                              hover:bg-lime-500 transition shadow-sm"
-                >
-                  Pay
-                </button>
-              )}
-            </td>
+                      >
+                        Pay
+                      </button>
+                    )}
+                  </td>
 
-            {/* Actions */}
-            <td className="p-4">
-              <div className="flex items-center gap-3">
-
-                {/* View */}
-                <button
-                  className="px-4 py-1.5 rounded-lg bg-[#e8f4ee] text-gray-800 border border-gray-200 
+                  {/* Actions */}
+                  <td className="p-4">
+                    <div className="flex items-center gap-3">
+                      {/* View */}
+                      {/* <button
+                        className="px-4 py-1.5 rounded-lg bg-[#e8f4ee] text-gray-800 border border-gray-200 
                              flex items-center gap-2 font-medium hover:bg-[#d9edef] hover:shadow-sm transition"
-                >
-                  View <MdOutlineRateReview size={18} />
-                </button>
+                      >
+                        View <MdOutlineRateReview size={18} />
+                      </button> */}
 
-                {/* Edit */}
-                <button
-                  className="px-4 py-1.5 rounded-lg bg-white text-blue-600 border border-blue-300 
-                             flex items-center gap-2 font-medium hover:bg-blue-50 hover:shadow-sm transition"
-                >
-                  Edit <FiEdit size={16} />
-                </button>
+                      {/* Edit */}
+                      <button
+                        className="px-4 py-1.5 rounded-lg bg-white text-green-600 border border-green-300 
+                                                      flex items-center gap-2 font-medium hover:bg-green-50 hover:shadow-sm transition "
+                      >
+                        Approved <MdCheckCircle size={16} />
+                      </button>
 
-                {/* Delete */}
-                <button
-                  onClick={() => handelDelet(item._id)}
-                  className="px-4 py-1.5 rounded-lg bg-white text-red-600 border border-red-300 
+                      {/* Delete */}
+                      <button
+                        onClick={() => handelDelet(item._id)}
+                        className="px-4 py-1.5 rounded-lg bg-white text-red-600 border border-red-300 
                              flex items-center gap-2 font-medium hover:bg-red-50 hover:shadow-sm transition"
-                >
-                  Delete <MdOutlineDeleteOutline size={20} />
-                </button>
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
-
-       
+                      >
+                        Delete <MdOutlineDeleteOutline size={20} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
