@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import useAuth from "../Hook/useAuth";
 import axios from "axios";
+import useAxiosSecoir from "../Hook/useAxiosSecoir";
 
 const Register = () => {
   const naviget = useNavigate();
@@ -16,18 +17,17 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { userCreat, profilesUpdeat, googleLogin } = useAuth();
+  const axiosSecoir = useAxiosSecoir();
 
   const handelData = (data) => {
     const email = data.email;
     const password = data.password;
     const displayName = data.name;
-
     const profileImg = data.photo[0];
 
     userCreat(email, password)
       .then(() => {
         toast.success("Creat User Successfully");
-
         // Img File Set From Data
         const fromData = new FormData();
         fromData.append("image", profileImg);
@@ -38,11 +38,31 @@ const Register = () => {
         }`;
 
         axios.post(api_img_url, fromData).then((res) => {
-          console.log("After Img Upload Now", res?.data?.data?.url);
+          // console.log("After Img Upload Now", res?.data?.data?.url);
+          const photoURL = res?.data?.data?.url;
           const pointrs = {
             displayName,
-            photoURL: res?.data?.data?.url,
+            photoURL: photoURL,
           };
+
+          const savedDB = {
+            displayName,
+            photoURL,
+            email,
+            password,
+          };
+
+          axiosSecoir
+            .post("/svuser", savedDB)
+            .then((res) => {
+              if (res.data.data) {
+                toast.success("User Saved DB");
+                console.log(res);
+              }
+            })
+            .catch((err) => {
+              toast.warning(err.code);
+            });
 
           profilesUpdeat(pointrs)
             .then(() => {
@@ -60,9 +80,21 @@ const Register = () => {
   };
 
   const handleGoogleRegister = () => {
-    googleLogin().then(() => {
-      toast.success("Creat User Successfully");
-      naviget("/");
+    googleLogin()
+    .then((data) => {
+      const savedDB = {
+            displayName:data.user.email,
+            photoURL:data.user.photoURL,
+            email:data.user.email,
+            // password:data.user.password,
+          };
+          axiosSecoir.post("/svuser", savedDB)
+          .then(res => {
+            console.log("Google LOgin",res);
+            
+            toast.success("Creat User Successfully");
+            naviget("/");
+          }) 
     });
   };
 
@@ -248,4 +280,4 @@ const Register = () => {
 
 export default Register;
 
-// 
+//

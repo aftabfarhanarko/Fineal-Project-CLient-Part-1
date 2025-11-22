@@ -7,12 +7,12 @@ import Loding from "../../../Shared/Loding";
 const PaymentHiestory = () => {
   const { user } = useAuth();
   const axiosSecoir = useAxiosSecoir();
-  const { data: history = [], isLoading } = useQuery({
+  const { data: history , isLoading } = useQuery({
     queryKey: ["idd", user?.email],
     queryFn: () =>
-      axiosSecoir.get(`/payment?email=${user?.email}`).then((res) => {
-        return res?.data;
-      }),
+      axiosSecoir.get(`/payment?email=${user?.email}`)
+    .then((res) => res.data),
+    enabled: !!user?.email,
   });
 
   //   console.log(data);
@@ -23,7 +23,7 @@ const PaymentHiestory = () => {
   return (
     <div className="md:p-9">
       
-      <h2 className="text-3xl font-semibold text-secondary">Total Payment Hiestory : {history.length}</h2>
+      <h2 className="text-3xl font-semibold text-secondary">Total Payment Hiestory : {history?.length}</h2>
 
       <div className="mt-8">
         <div className="bg-white shadow-lg rounded-xl overflow-x-auto">

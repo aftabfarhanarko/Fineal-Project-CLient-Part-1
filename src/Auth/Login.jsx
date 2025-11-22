@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hook/useAuth";
 import { toast } from "sonner";
+import useAxiosSecoir from "../Hook/useAxiosSecoir";
 
 const Login = () => {
   const [show, setShow] = useState(true);
@@ -15,8 +16,8 @@ const Login = () => {
   } = useForm();
   const { loginUser, googleLogin } = useAuth();
   const naviget = useNavigate();
-
   const location = useLocation();
+  const axiosSecoir = useAxiosSecoir()
 
   const loginHandel = (data) => {
     loginUser(data.email, data.password)
@@ -32,9 +33,24 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
-        toast.success("Login User Successfully");
-        naviget(location?.state ? location?.state : "/");
+      .then((data) => {
+        const savedDB = {
+          displayName: data.user.email,
+          photoURL: data.user.photoURL,
+          email: data.user.email,
+          // password:data.user.password,
+        };
+        axiosSecoir.post("/svuser", savedDB)
+        .then((res) => {
+          console.log("Google LOgin", res.data);
+
+          toast.success("Creat User Successfully");
+          naviget("/");
+        })
+        .catch(err => {
+          console.log(err);
+          
+        })
       })
       .catch((err) => {
         toast.warning(err.code);
@@ -42,7 +58,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mx-auto mb-53 px-2 md:mb-0"> 
+    <div className="flex flex-col justify-center items-center mx-auto mb-53 px-2 md:mb-0">
       <div className="bg-white/70 rounded-lg p-6 md:p-8 w-full lg:w-8/12 ">
         <h1 className="text-3xl  text-secondary font-bold mb-2">
           Welcome Back
@@ -112,9 +128,14 @@ const Login = () => {
                 <FaEye className="absolute right-5 z-2  top-11 md:top-12.5" />
               )}
             </div>
-         
-            <Link state={location?.state} to="/forget" className="font-medium  underline text-secondary hover:text-red-500">Forget Password</Link>
-       
+
+            <Link
+              state={location?.state}
+              to="/forget"
+              className="font-medium  underline text-secondary hover:text-red-500"
+            >
+              Forget Password
+            </Link>
           </div>
 
           {/* Register Button */}

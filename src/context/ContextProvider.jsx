@@ -50,6 +50,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubccripet = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      
     });
 
     return () => {
