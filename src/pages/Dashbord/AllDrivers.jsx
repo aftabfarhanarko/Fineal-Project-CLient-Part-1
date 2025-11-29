@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecoir from "../../Hook/useAxiosSecoir";
 import Loding from "../../Shared/Loding";
-import { MdCancel, MdCheckCircle } from "react-icons/md";
+import { MdCancel, MdCheckCircle, MdOutlineRateReview } from "react-icons/md";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
 
@@ -42,13 +42,19 @@ const AllDrivers = () => {
     updeatStutaseNow(item, "rejected");
   };
 
+  const handelViewAll = (item) => {
+    console.log("Detlise Now", item);
+    document.getElementById("rider_info_modal").showModal();
+  };
+
+  
+
   if (isLoading) {
     return <Loding></Loding>;
   }
 
   return (
     <div>
-    <div></div>
       <div className=" p-6  ">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">
           Rider Details
@@ -150,12 +156,18 @@ const AllDrivers = () => {
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           {/* View */}
-                          {/* <button
-                            className="px-4 py-1.5 rounded-lg bg-[#e8f4ee] text-gray-800 border border-gray-200 
-                                         flex items-center gap-2 font-medium hover:bg-[#d9edef] hover:shadow-sm transition"
+                          <button
+                            onClick={() => handelViewAll(item)}
+                            className="px-5 py-1.5 rounded-md
+             text-gray-900 border border-green-300 flex items-center gap-2 font-semibold
+            hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
                           >
-                            View <MdOutlineRateReview size={18} />
-                          </button> */}
+                            View
+                            <MdOutlineRateReview
+                              className="text-green-600"
+                              size={18}
+                            />
+                          </button>
 
                           {/* Approved */}
                           <button
@@ -184,6 +196,131 @@ const AllDrivers = () => {
           </div>
         </div>
       </div>
+
+      <dialog
+        onClick={() => handelViewAll}
+        id="rider_info_modal"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div
+          className="
+      modal-box 
+      w-full 
+      max-w-3xl 
+      bg-white/90 
+      backdrop-blur-xl 
+      shadow-2xl 
+      rounded-3xl 
+      border border-gray-200 
+      p-8
+    "
+        >
+          <h3 className="font-bold text-2xl mb-6 text-gray-800 text-center">
+            Rider Details
+          </h3>
+
+          {/* Image */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="https://i.ibb.co/j9Z3TLBt/IMG-20250113-WA0033-2.jpg"
+              alt="photo"
+              className="w-36 h-36 rounded-2xl object-cover border border-base-300 shadow-lg"
+            />
+          </div>
+
+          {/* Grid Data */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+            <div>
+              <p className="text-sm text-gray-500">Name</p>
+              <p className="font-semibold text-lg">Aftab Farhan</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Email</p>
+              <p className="font-semibold text-lg">aftabfarhan324@gmail.com</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Phone</p>
+              <p className="font-semibold text-lg">01613410880</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">District</p>
+              <p className="font-semibold text-lg">Barguna</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Region</p>
+              <p className="font-semibold text-lg">Barisal</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Rider Role</p>
+              <p className="font-semibold text-lg">Rider</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Bike Brand</p>
+              <p className="font-semibold text-lg">Honda</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Registration No</p>
+              <p className="font-semibold text-lg">28364873464578367</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">License No</p>
+              <p className="font-semibold text-lg">2131232</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">NID No</p>
+              <p className="font-semibold text-lg">1231234234</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Status</p>
+              <p className="font-semibold px-3 py-1.5 bg-green-100 text-green-700 rounded-xl inline-block">
+                approved
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Created At</p>
+              <p className="font-semibold text-lg">2025-11-22</p>
+            </div>
+
+            <div className="md:col-span-2">
+              <p className="text-sm text-gray-500">About</p>
+              <p className="font-semibold bg-gray-50 p-4 rounded-xl border mt-1 text-lg leading-relaxed">
+                I am New Joining
+              </p>
+            </div>
+          </div>
+
+          {/* Close Button */}
+          <div className="modal-action mt-6 flex ">
+            <form method="dialog">
+              <button
+                className="
+            px-6 
+            py-2.5 
+            rounded-xl 
+            bg-gray-800 
+            text-white 
+            font-medium 
+            hover:bg-gray-900 
+            transition-all
+          "
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
