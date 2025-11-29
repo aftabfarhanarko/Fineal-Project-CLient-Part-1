@@ -17,10 +17,10 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { MdManageAccounts } from "react-icons/md";
 import { HiHomeModern } from "react-icons/hi2";
 import useAuth from "../Hook/useAuth";
-import { FaRegCreditCard } from "react-icons/fa";
+import { FaRegCreditCard, FaUser, FaUsers } from "react-icons/fa";
 
 const DashbordLayout = () => {
-  const { user,userLogOut } = useAuth();
+  const { user, userLogOut } = useAuth();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -150,19 +150,21 @@ const DashbordLayout = () => {
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Payment Details "
                 >
-                  <FaRegCreditCard  className=" w-4 md:w-5  h-5 md:h-7" />
-                  <span className="is-drawer-close:hidden">Payment Details</span>
+                  <FaRegCreditCard className=" w-4 md:w-5  h-5 md:h-7" />
+                  <span className="is-drawer-close:hidden">
+                    Payment Details
+                  </span>
                 </Link>
               </li>
 
               <li>
                 <Link
-                  to="/dasbord/manageParcel"
+                  to="/dasbord/userManage"
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Manage Parcel "
+                  data-tip="User Manage "
                 >
-                  <MdManageAccounts className=" w-4 md:w-5  h-5 md:h-7" />
-                  <span className="is-drawer-close:hidden">Manage Parcel</span>
+                  <FaUsers className=" w-4 md:w-5  h-5 md:h-7" />
+                  <span className="is-drawer-close:hidden">User Manage</span>
                 </Link>
               </li>
 
@@ -206,7 +208,8 @@ const DashbordLayout = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={() => userLogOut()}
+                  <Link
+                    onClick={() => userLogOut()}
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Logout"
                   >

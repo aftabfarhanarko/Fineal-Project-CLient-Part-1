@@ -104,7 +104,7 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
                     <button
                       className="
                  px-6 py-2  text-[#82aa09]
-  bg-white  outline  rounded-md   transition-all duration-300 ease-out   bg-gradient-to-r hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300  hover:text-black hover:shadow-xl  hover:outline-none font-semibold hover:scale-100  active:scale-95  focus:outline-none                        
+  bg-white  outline  rounded-md   transition-all duration-300 ease-out   bg-gradient-to-r hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300  hover:text-black hover:shadow-xl  hover:outline-none font-semibold hover:scale-95 active:scale-95  focus:outline-none                        
                   "
                     >
                       Login
@@ -119,7 +119,7 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
 bg-gradient-to-r from-[#b2e36d] via-[#b8e04e] to-[#bae240] 
   font-semibold
 hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transition-all  duration-300 ease-out  hover:shadow-xl 
-  hover:scale-105 active:scale-95 
+  hover:scale-95 active:scale-95 
   focus:outline-none 
                   "
                     >

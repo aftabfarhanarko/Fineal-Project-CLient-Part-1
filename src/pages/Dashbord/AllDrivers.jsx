@@ -4,9 +4,11 @@ import Loding from "../../Shared/Loding";
 import { MdCancel, MdCheckCircle, MdOutlineRateReview } from "react-icons/md";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const AllDrivers = () => {
   const axiosSecoir = useAxiosSecoir();
+  const [modalData, setModalData] = useState([]);
   const { refetch, data, isLoading } = useQuery({
     queryKey: ["test", "pending"],
     queryFn: async () =>
@@ -43,11 +45,15 @@ const AllDrivers = () => {
   };
 
   const handelViewAll = (item) => {
-    console.log("Detlise Now", item);
+    setModalData(item);
     document.getElementById("rider_info_modal").showModal();
   };
 
-  
+  const handelCloseModal = () => {
+    setModalData([]);
+  };
+
+  console.log(modalData);
 
   if (isLoading) {
     return <Loding></Loding>;
@@ -66,11 +72,11 @@ const AllDrivers = () => {
                 <thead className="bg-gray-100 text-left text-gray-700">
                   <tr>
                     <th className="p-4 font-semibold">Srl No</th>
-                    <th className="p-4 font-semibold">Raider</th>
-                    <th className="p-4 font-semibold">Region</th>
-                    <th className="p-4 font-semibold">All Details</th>
-                    <th className="p-4 font-semibold">Submit Date </th>
-                    <th className="p-4 font-semibold">Delivery Status</th>
+                    <th className="p-4 px-10 md:px-0 font-semibold">Raider</th>
+                    <th className="p-4 px-7 md:px-0 font-semibold">Region</th>
+                    <th className="p-4 px-10 md:px-0  font-semibold">All Details</th>
+                    <th className="p-4 px-10 md:px-0 font-semibold">Submit Date </th>
+                    <th className="p-4 px-5 md:px-0 font-semibold">Delivery Status</th>
                     <th className="p-4 font-semibold">Action</th>
                   </tr>
                 </thead>
@@ -87,7 +93,7 @@ const AllDrivers = () => {
                       </td>
 
                       {/* Profile Info */}
-                      <td className="py-4">
+                      <td className="py-4 px-4 md:px-0">
                         <div className=" md:flex gap-2.5 items-center">
                           <img
                             src={item.photo}
@@ -98,7 +104,7 @@ const AllDrivers = () => {
                             <p className="font-semibold text-md md:text-lg text-gray-900">
                               {item.yourName}
                             </p>
-                            <p className="font-semibold text-gray-900">
+                            <p className="font-semibold  text-gray-900">
                               {item.yourEmail}
                             </p>
                           </div>
@@ -106,7 +112,7 @@ const AllDrivers = () => {
                       </td>
 
                       {/* Sender Info */}
-                      <td className="py-4">
+                      <td className="py-4 px-7 md:px-0">
                         <p className="font-semibold text-gray-900 text-[16px]">
                           {item.yourRegion}
                         </p>
@@ -116,7 +122,7 @@ const AllDrivers = () => {
                       </td>
 
                       {/* Delivery Status */}
-                      <td className="py-4 text-gray-800">
+                      <td className="py-4 px-10 md:px-0 text-gray-800">
                         <p className=" text-[15px] text-gray-800">
                           NidNo : {item.nidNo}
                         </p>
@@ -129,7 +135,7 @@ const AllDrivers = () => {
                       </td>
 
                       {/* Tracking */}
-                      <td className="py-4 text-gray-800">
+                      <td className="py-4 px-10 md:px-0 text-gray-800">
                         <p className="text-[17px] text-black">
                           {" "}
                           {new Date(item.creatAtime).toLocaleString()}
@@ -137,7 +143,7 @@ const AllDrivers = () => {
                       </td>
 
                       {/* Payment */}
-                      <td className="p-4 font-semibold">
+                      <td className="p-4 px-5 md:px-0 font-semibold">
                         {item.status === "pending" ||
                         item.status === "rejected" ? (
                           <span className="text-red-600  px-3 py-1 rounded-full text-md font-semibold">
@@ -213,7 +219,7 @@ const AllDrivers = () => {
       rounded-3xl 
       border border-gray-200 
       p-8
-    "
+  "
         >
           <h3 className="font-bold text-2xl mb-6 text-gray-800 text-center">
             Rider Details
@@ -222,7 +228,7 @@ const AllDrivers = () => {
           {/* Image */}
           <div className="flex justify-center mb-6">
             <img
-              src="https://i.ibb.co/j9Z3TLBt/IMG-20250113-WA0033-2.jpg"
+              src={modalData?.photo}
               alt="photo"
               className="w-36 h-36 rounded-2xl object-cover border border-base-300 shadow-lg"
             />
@@ -232,78 +238,87 @@ const AllDrivers = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
             <div>
               <p className="text-sm text-gray-500">Name</p>
-              <p className="font-semibold text-lg">Aftab Farhan</p>
+              <p className="font-semibold text-lg">{modalData?.yourName}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Email</p>
-              <p className="font-semibold text-lg">aftabfarhan324@gmail.com</p>
+              <p className="font-semibold text-lg">{modalData?.yourEmail}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Phone</p>
-              <p className="font-semibold text-lg">01613410880</p>
+              <p className="font-semibold text-lg">{modalData?.phoneNumber}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">District</p>
-              <p className="font-semibold text-lg">Barguna</p>
+              <p className="font-semibold text-lg">{modalData?.yourDistrict}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Region</p>
-              <p className="font-semibold text-lg">Barisal</p>
+              <p className="font-semibold text-lg">{modalData?.yourRegion}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Rider Role</p>
-              <p className="font-semibold text-lg">Rider</p>
+              <p className="font-semibold text-lg">{modalData?.roll}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Bike Brand</p>
-              <p className="font-semibold text-lg">Honda</p>
+              <p className="font-semibold text-lg">
+                {modalData?.bikeBrandModelAndYear}
+              </p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Registration No</p>
-              <p className="font-semibold text-lg">28364873464578367</p>
+              <p className="font-semibold text-lg">
+                {modalData?.bikeRegistrationNumber}
+              </p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">License No</p>
-              <p className="font-semibold text-lg">2131232</p>
+              <p className="font-semibold text-lg">
+                {modalData?.drivingLicenseNumber}
+              </p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">NID No</p>
-              <p className="font-semibold text-lg">1231234234</p>
+              <p className="font-semibold text-lg">{modalData?.nidNo}</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Status</p>
-              <p className="font-semibold px-3 py-1.5 bg-green-100 text-green-700 rounded-xl inline-block">
-                approved
+              <p className={`${modalData.status ===  "approved" ? 'font-semibold px-3 py-1.5 bg-green-100 text-green-700 rounded-xl inline-block': modalData.status === "rejected" &&  'font-semibold px-3 py-1.5 bg-red-100 text-red-600 rounded-xl inline-block'} `}>
+                {modalData?.status}
               </p>
             </div>
 
             <div>
               <p className="text-sm text-gray-500">Created At</p>
-              <p className="font-semibold text-lg">2025-11-22</p>
+              <p className="font-semibold text-lg">
+                {modalData?.creatAtime?.slice(0, 10)}
+              </p>
             </div>
 
             <div className="md:col-span-2">
               <p className="text-sm text-gray-500">About</p>
               <p className="font-semibold bg-gray-50 p-4 rounded-xl border mt-1 text-lg leading-relaxed">
-                I am New Joining
+                {modalData?.tellUsAboutYourself}
               </p>
             </div>
           </div>
 
           {/* Close Button */}
-          <div className="modal-action mt-6 flex ">
+          <div className="modal-action mt-6 flex">
             <form method="dialog">
               <button
+                onClick={handelCloseModal}
                 className="
             px-6 
             py-2.5 
@@ -313,7 +328,7 @@ const AllDrivers = () => {
             font-medium 
             hover:bg-gray-900 
             transition-all
-          "
+        "
               >
                 Close
               </button>

@@ -22,6 +22,7 @@ import SuccessPage from "../pages/Dashbord/Payment/SuccessPage";
 import CancelPage from "../pages/Dashbord/Payment/CancelPage";
 import ViewDetlics from "../pages/Dashbord/ViewDetlics";
 import PaymentHiestory from "../pages/Dashbord/PaymentHiestory/PaymentHiestory";
+import UserManage from "../pages/Dashbord/userManage/userManage";
 
 export const router = createBrowserRouter([
   {
@@ -133,10 +134,10 @@ export const router = createBrowserRouter([
         path: "/dasbord/cancel",
         Component: CancelPage,
       },
-      // {
-      //   path: "/dasbord/viewDetlics/:id",
-      //   Component: ViewDetlics
-      // },
+      {
+        path: "/dasbord/userManage",
+        Component: UserManage
+      },
     ],
   },
 ]);
