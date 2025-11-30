@@ -9,18 +9,18 @@ import {
   Bell,
 } from "lucide-react";
 import Logo from "../Shared/Logo";
-import { BsFillHouseDashFill } from "react-icons/bs";
 import { Link, Outlet } from "react-router";
-import { IoHomeOutline } from "react-icons/io5";
 import { GoSidebarExpand } from "react-icons/go";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { MdManageAccounts } from "react-icons/md";
 import { HiHomeModern } from "react-icons/hi2";
 import useAuth from "../Hook/useAuth";
 import { FaRegCreditCard, FaUser, FaUsers } from "react-icons/fa";
+import useRole from "../Hook/useRole";
 
 const DashbordLayout = () => {
   const { user, userLogOut } = useAuth();
+  const role = useRole();
+  
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -134,18 +134,6 @@ const DashbordLayout = () => {
 
               <li>
                 <Link
-                  to="/dasbord/deliveries"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="All Deliveries "
-                >
-                  {/* Home icon */}
-                  <CiDeliveryTruck className=" w-4 md:w-5  h-5 md:h-7" />
-                  <span className="is-drawer-close:hidden">All Deliveries</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link
                   to="/dasbord/paymentHiestory"
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Payment Details "
@@ -157,17 +145,34 @@ const DashbordLayout = () => {
                 </Link>
               </li>
 
-              <li>
-                <Link
-                  to="/dasbord/userManage"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="User Manage "
-                >
-                  <FaUsers className=" w-4 md:w-5  h-5 md:h-7" />
-                  <span className="is-drawer-close:hidden">User Manage</span>
-                </Link>
-              </li>
-
+              {role?.role === 'admin' ? (
+                <>
+                  {" "}
+                  <li>
+                    <Link
+                      to="/dasbord/deliveries"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="All Rider "
+                    >
+                      {/* Home icon */}
+                      <CiDeliveryTruck className=" w-4 md:w-5  h-5 md:h-7" />
+                      <span className="is-drawer-close:hidden">All Rider</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/dasbord/userManage"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="User Manage "
+                    >
+                      <FaUsers className=" w-4 md:w-5  h-5 md:h-7" />
+                      <span className="is-drawer-close:hidden">
+                        User Manage
+                      </span>
+                    </Link>
+                  </li>
+                </>
+              ) : ""}
               {/* List item */}
               <div className=" border-t border-gray-400 mt-5 pt-3">
                 <li>

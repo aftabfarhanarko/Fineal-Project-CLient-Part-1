@@ -35,7 +35,7 @@ const UserManage = () => {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecoir.patch(`users/${user._id}`, roleInfo).then((res) => {
+        axiosSecoir.patch(`users/${user._id}/role`, roleInfo).then((res) => {
           console.log(res.data);
           refetch();
           Swal.fire({
@@ -56,8 +56,6 @@ const UserManage = () => {
     Swal.fire({
       icon: "success",
       title: `Admin Removed ${user.displayName} `,
-      // text: "The rider has been successfully added to the system. Admin will review and verify the rider details shortly.",
-
       confirmButtonText: "OK",
       customClass: {
         popup: "rounded-2xl shadow-lg",
@@ -69,7 +67,7 @@ const UserManage = () => {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecoir.patch(`users/${user._id}`, roleInfo).then((res) => {
+        axiosSecoir.patch(`users/${user._id}/role`, roleInfo).then((res) => {
           console.log(res.data);
           refetch();
           Swal.fire({

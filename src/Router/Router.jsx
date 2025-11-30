@@ -23,6 +23,7 @@ import CancelPage from "../pages/Dashbord/Payment/CancelPage";
 import ViewDetlics from "../pages/Dashbord/ViewDetlics";
 import PaymentHiestory from "../pages/Dashbord/PaymentHiestory/PaymentHiestory";
 import UserManage from "../pages/Dashbord/userManage/userManage";
+import AdminRole from "./AdminRole";
 
 export const router = createBrowserRouter([
   {
@@ -116,7 +117,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dasbord/deliveries",
-        Component: AllDrivers,
+        element: <AdminRole><AllDrivers></AllDrivers></AdminRole>
       },
       {
         path: "/dasbord/paymentHiestory",
@@ -136,7 +137,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dasbord/userManage",
-        Component: UserManage
+        element: <AdminRole><UserManage></UserManage></AdminRole>
       },
     ],
   },
