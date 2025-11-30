@@ -157,7 +157,7 @@ const MyParcel = () => {
       "bg-yellow-50 text-yellow-700 border border-yellow-200"
     }
     ${
-      item.deliveryStatus === "delivering" &&
+      item.deliveryStatus === "driver-assigned" &&
       "bg-blue-50 text-blue-600 border border-blue-200"
     }
     ${
