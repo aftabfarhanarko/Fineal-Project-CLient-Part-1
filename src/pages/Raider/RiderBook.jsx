@@ -14,7 +14,7 @@ const RiderBook = () => {
     formState: { errors },
   } = useForm();
 
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const axiosSecoir = useAxiosSecoir();
   const serviceCenters = useLoaderData();
@@ -31,6 +31,14 @@ const RiderBook = () => {
   };
 
   const handelFrom = (data) => {
+    const riderInfoUb = { role: "rider" };
+
+    axiosSecoir
+      .patch(`/user/riderUpdet?email=${user.email}`, { riderInfoUb })
+      .then((res) => {
+        console.log(res.data);
+      });
+
     console.log(data);
     const roiderPhoto = data.photo[0];
     const fromData = new FormData();
@@ -121,6 +129,7 @@ const RiderBook = () => {
                     type="text"
                     {...register("yourName", { required: true })}
                     defaultValue={user?.displayName}
+                    readOnly
                     className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
                   {errors.yourName?.type === "required" && (
@@ -139,6 +148,7 @@ const RiderBook = () => {
                     type="email"
                     {...register("yourEmail", { required: true })}
                     defaultValue={user?.email}
+                    readOnly
                     className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
                   {errors.yourEmail?.type === "required" && (

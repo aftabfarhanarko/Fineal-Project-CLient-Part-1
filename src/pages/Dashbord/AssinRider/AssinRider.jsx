@@ -82,7 +82,7 @@ const AssinRider = () => {
             {parcel.map((item, i) => (
               <tr
                 key={i}
-                className="border-b border-gray-200 hover:bg-gray-50 transition"
+                className="border-b border-gray-200 hover:bg-gray-100 transition"
               >
                 {/* Serial */}
                 <td className="p-4 font-medium text-gray-900">{i + 1}</td>

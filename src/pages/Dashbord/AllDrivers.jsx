@@ -168,19 +168,7 @@ const AllDrivers = () => {
                       {/* Actions */}
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          {/* View */}
-                          <button
-                            onClick={() => handelViewAll(item)}
-                            className="px-5 py-1.5 rounded-md
-             text-gray-900 border border-green-300 flex items-center gap-2 font-semibold
-            hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
-                          >
-                            View
-                            <MdOutlineRateReview
-                              className="text-green-600"
-                              size={18}
-                            />
-                          </button>
+                         
 
                           {/* Approved */}
                           <button
@@ -198,6 +186,20 @@ const AllDrivers = () => {
                                          flex items-center gap-2 font-medium hover:bg-red-50 hover:shadow-sm transition"
                           >
                             Reject <MdCancel size={20} />
+                          </button>
+
+                           {/* View */}
+                          <button
+                            onClick={() => handelViewAll(item)}
+                            className="px-5 py-1.5 rounded-md
+             text-gray-900 border border-green-300 flex items-center gap-2 font-semibold
+            hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
+                          >
+                            View
+                            <MdOutlineRateReview
+                              className="text-green-600"
+                              size={18}
+                            />
                           </button>
                         </div>
                       </td>

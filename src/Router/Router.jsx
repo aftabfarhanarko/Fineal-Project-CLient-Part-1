@@ -26,6 +26,8 @@ import UserManage from "../pages/Dashbord/userManage/userManage";
 import AdminRole from "./AdminRole";
 import AssinRider from "../pages/Dashbord/AssinRider/AssinRider";
 import AssingDiliveryTask from '../pages/Dashbord/AssingDiliveryTask/AssingDiliveryTask'
+import RIderRoute from "./RIderRoute";
+import CompletRiderTask from "../pages/Dashbord/CompletRiderTask/CompletRiderTask";
 
 export const router = createBrowserRouter([
   {
@@ -147,7 +149,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dasbord/assigned-deliveries",
-        element: <AssingDiliveryTask></AssingDiliveryTask>
+        element: <RIderRoute><AssingDiliveryTask></AssingDiliveryTask></RIderRoute>
+      },
+      {
+        path: "/dasbord/riderCommpletTask",
+        element: <RIderRoute><CompletRiderTask></CompletRiderTask></RIderRoute>
       },
     ],
   },

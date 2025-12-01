@@ -161,7 +161,6 @@ const UserManage = () => {
           {/* Input Field */}
           <input
             type="search"
-            
             onChange={(e) => setSearchText(e.target.value)}
             className="grow  outline-none bg-transparent text-gray-700 placeholder-gray-400"
             placeholder="Search user..."
@@ -185,10 +184,10 @@ const UserManage = () => {
             </thead>
 
             <tbody>
-              {   data?.map((item, i) => (
+              {data?.map((item, i) => (
                 <tr
                   key={i}
-                  className="border-b border-gray-200 hover:bg-gray-50 transition"
+                  className="border-b border-gray-200 hover:bg-gray-100 transition"
                 >
                   {/* Serial */}
                   <td className="p-4 font-medium text-gray-900">{i + 1}</td>
@@ -217,13 +216,24 @@ const UserManage = () => {
 
                   {/* Role */}
                   <td className="p-4 font-semibold">
-                    <span className="text-blue-600 bg-blue-100 px-3 py-1 rounded-full text-xs">
+                    <span
+                      className={`
+    px-3 py-1 rounded-full text-xs font-semibold
+    ${
+      item.role === "admin"
+        ? "bg-orange-100 text-orange-600"
+        : item.role === "rider"
+        ? "bg-red-100 text-red-600"
+        : "bg-blue-100 text-blue-600" // user
+    }
+  `}
+                    >
                       {item.role}
                     </span>
                   </td>
 
                   <td className=" p-4">
-                    {item.role === "admin" ? (
+                    { item.role === "rider" ? <span className=" text-md font-semibold text-red-600">No Updeat</span> :item.role === "admin" ? (
                       <button
                         onClick={() => handelremovedAdmin(item)}
                         className="
