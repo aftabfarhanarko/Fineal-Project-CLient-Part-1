@@ -25,6 +25,7 @@ import useRole from "../Hook/useRole";
 import { RiMotorbikeFill } from "react-icons/ri";
 import { PiMotorcycleFill } from "react-icons/pi";
 import { MdDeliveryDining } from "react-icons/md";
+import logoseas from '../assets/logo.png'
 
 const DashbordLayout = () => {
   const { user, userLogOut } = useAuth();
@@ -107,10 +108,23 @@ const DashbordLayout = () => {
               <Link
                 to="/"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Go Home Page "
+                data-tip=" Home Page "
+              >
+                <img src={logoseas}></img>
+
+                {/* <HiHomeModern className=" w-4 md:w-5  h-5 md:h-7" /> */}
+                <span className="is-drawer-close:hidden">Home Page</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/dasbord"
+                className="is-drawer-close:tooltip mt-3 is-drawer-close:tooltip-right"
+                data-tip="Dashboard Home Page "
               >
                 <HiHomeModern className=" w-4 md:w-5  h-5 md:h-7" />
-                <span className="is-drawer-close:hidden">Go Home Page</span>
+                <span className="is-drawer-close:hidden">Dashboard Home Page</span>
               </Link>
             </li>
             <div className="mt-">
@@ -119,16 +133,10 @@ const DashbordLayout = () => {
                 MENU
               </p>
 
-              <li>
-                <Link
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Dashboard "
-                >
-                  {/* Home icon */}
-                  <LayoutDashboard className=" w-4 md:w-5  h-5 md:h-7" />
-                  <span className="is-drawer-close:hidden">Dashboard</span>
-                </Link>
-              </li>
+          {/* 
+          
+          
+          */}
 
               <li>
                 <Link
@@ -293,3 +301,13 @@ const DashbordLayout = () => {
 };
 
 export default DashbordLayout;
+    // <li>
+    //             <Link
+    //               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+    //               data-tip="Dashboard "
+    //             >
+    //               {/* Home icon */}
+    //               <LayoutDashboard className=" w-4 md:w-5  h-5 md:h-7" />
+    //               <span className="is-drawer-close:hidden">Dashboard</span>
+    //             </Link>
+    //           </li>

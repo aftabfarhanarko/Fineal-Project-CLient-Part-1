@@ -13,22 +13,24 @@ import ForgetPassword from "../Auth/ForgetPassword";
 import RiderBook from "../pages/Raider/RiderBook";
 import Price from "../pages/Price";
 import SendPricel from "../pages/SendPricel/SendPricel";
-import Dashbord from "../pages/Dashbord/Dashbord";
+// import Dashbord from "../pages/Dashbord/Dashbord";
 import DashbordLayout from "../Layout/DashbordLayout";
 import MyParcel from "../pages/Dashbord/MyParcel";
 import AllDrivers from "../pages/Dashbord/AllDrivers";
 import Payment from "../pages/Dashbord/Payment/Payment";
 import SuccessPage from "../pages/Dashbord/Payment/SuccessPage";
 import CancelPage from "../pages/Dashbord/Payment/CancelPage";
-import ViewDetlics from "../pages/Dashbord/ViewDetlics";
+// import ViewDetlics from "../pages/Dashbord/ViewDetlics";
 import PaymentHiestory from "../pages/Dashbord/PaymentHiestory/PaymentHiestory";
-import UserManage from "../pages/Dashbord/userManage/userManage";
+// import UserManage from "../pages/Dashbord/userManage/userManage";
 import AdminRole from "./AdminRole";
 import AssinRider from "../pages/Dashbord/AssinRider/AssinRider";
 import AssingDiliveryTask from '../pages/Dashbord/AssingDiliveryTask/AssingDiliveryTask'
 import RIderRoute from "./RIderRoute";
 import CompletRiderTask from "../pages/Dashbord/CompletRiderTask/CompletRiderTask";
 import TrakinkParcel from "../pages/Home/TrakinkParcel/TrakinkParcel";
+import Dashboard from "../pages/Dashbord/DashBoodrRoleShow/ShowDesh";
+import UserManage from "../pages/Dashbord/userManage/UserManage";
 
 export const router = createBrowserRouter([
   {
@@ -118,7 +120,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashbord></Dashbord>,
+        element: <Dashboard></Dashboard>
       },
       {
         path: "/dasbord/myparcel",

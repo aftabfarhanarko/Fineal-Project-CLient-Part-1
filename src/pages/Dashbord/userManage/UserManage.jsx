@@ -7,10 +7,11 @@ import Loding from "../../../Shared/Loding";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { GoArrowRight } from "react-icons/go";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { IoIosSearch } from "react-icons/io";
 
 const UserManage = () => {
   const axiosSecoir = useAxiosSecoir();
-  const [searchText, setSearchText] = useState("");
+  // const [searchText, setSearchText] = useState("");
 
   // set Paginitions
   const [page, setPage] = useState(1);
@@ -143,6 +144,11 @@ const UserManage = () => {
       }
     });
   };
+  const handelSearch = (e) => {
+    e.preventDefault();
+    console.log(e.target.text.value);
+    
+  }
 
   if (isLoading) {
     return <Loding></Loding>;
@@ -154,32 +160,31 @@ const UserManage = () => {
         <h1 className=" text-3xl text-secondary font-semibold">
           All User : {data.total}
         </h1>
-        <label className="md:mt-0 mt-3 flex items-center gap-3 w-full max-w-md px-4 py-2 bg-white/70 backdrop-blur-md border  hover:border-lime-500 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all">
-          {/* Search Icon */}
-          <svg
-            className="h-5 w-5 text-gray-500"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
+        <div className="relative  max-w-md mb-10">
+          <form
+            onSubmit={handelSearch}
+            className="flex items-center rounded-xl border border-gray-300 bg-white px-6 py-3 shadow-sm transition-shadow hover:shadow-md focus-within:shadow-md focus-within:ring-2 focus-within:ring-lime-400"
           >
-            <g
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2.2"
-              fill="none"
-              stroke="currentColor"
+            {/* Icon */}
+            <IoIosSearch className="h-5 w-5   font-semibold" />
+
+            {/* Input - takes all space except button */}
+            <input
+              type="search"
+              name="text"
+              placeholder="Search here"
+              className="mx-4 flex-1 bg-transparent text-base  font-semibold  outline-none"
+            />
+
+            {/* Button - ABSOLUTELY STUCK TO THE RIGHT */}
+            <button
+              type="submit"
+              className="absolute z-2 right-0 top-1/2 -translate-y-1/2 rounded-xl bg-lime-400 px-6 py-3 font-medium text-gray-900 transition-colors hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-400 text-thried font-semibold"
             >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </g>
-          </svg>
-          {/* Input Field */}
-          <input
-            type="search"
-            onChange={(e) => setSearchText(e.target.value)}
-            className="grow z-20 outline-none bg-transparent text-gray-700 placeholder-gray-400"
-            placeholder="Search user..."
-          />
-        </label>
+              Search
+            </button>
+          </form>
+        </div>
       </div>
       <div className="mt-6">
         <div className="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-100">
