@@ -102,6 +102,7 @@ const MyParcel = () => {
         parcelid: parcel?._id,
         senderemail: parcel?.senderemail,
         percilname: parcel?.percilname,
+        trakingId:parcel?.trakingId
       };
       const res = await axiosData.post("/payment-checkout", paymentInfo);
       window.location.assign(res.data.url);
@@ -133,7 +134,7 @@ const MyParcel = () => {
               {data.map((item, i) => (
                 <tr
                   key={i}
-                  className="border-b border-gray-200 hover:bg-gray-50 transition"
+                  className="border-b border-gray-200 hover:bg-gray-100 transition"
                 >
                   {/* Serial */}
                   <td className="p-4 font-medium text-gray-900">{i + 1}</td>
@@ -224,13 +225,13 @@ const MyParcel = () => {
                         View <MdOutlineRateReview size={18} />
                       </button>
 
-                      {/* Edit */}
+                      {/* Edit
                       <button
                         className="px-4 py-1.5 rounded-lg bg-white text-green-600 border border-green-300 
                                                       flex items-center gap-2 font-medium hover:bg-green-50 hover:shadow-sm transition "
                       >
                         Approved <MdCheckCircle size={16} />
-                      </button>
+                      </button> */}
 
                       {/* Delete */}
                       <button

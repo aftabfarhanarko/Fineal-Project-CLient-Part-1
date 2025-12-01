@@ -1,139 +1,197 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import useAxiosSecoir from "../../../Hook/useAxiosSecoir";
-import { ArrowRight, CheckCircle2, Download } from "lucide-react";
+import { CheckCircle2, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import Loding from "../../../Shared/Loding";
 
 const SuccessPage = () => {
   const [searchParems] = useSearchParams();
-  const [loding, setLoding] = useState(false);
+  const [loading, setLoading] = useState(false);
   const axiosSecoir = useAxiosSecoir();
   const [allId, setAllId] = useState({});
-  const sectionsId = searchParems.get("session_id");
-  console.log(sectionsId);
+  const sessionId = searchParems.get("session_id");
 
   useEffect(() => {
-    setLoding(true);
-    if (sectionsId) {
+    setLoading(true);
+    if (sessionId) {
       axiosSecoir
-        .patch(`/success-payment?session_id=${sectionsId}`)
+        .patch(`/success-payment?session_id=${sessionId}`)
         .then((res) => {
           console.log(res.data);
+
           setAllId({
             trakingId: res.data.trakingId,
             transactionId: res.data.transactionId,
+            amount: res.data.amount,
+            email: res.data.email,
+            method: res.data.method,
+            date: new Date().toLocaleString(),
           });
-          setLoding(false);
+
+          setLoading(false);
         });
     }
-  }, [sectionsId, axiosSecoir]);
+  }, [sessionId, axiosSecoir]);
 
-  if (loding) {
-    return <Loding></Loding>;
-  }
+  console.log(allId);
+
+  if (loading) return <Loding />;
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-white via-slate-50 to-slate-100 p-6">
+    <div
+      className="min-h-[90vh] flex items-center justify-center 
+    
+    p-4 sm:p-6 md:p-10"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="w-full max-w-xl bg-white rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-200/80 backdrop-blur-sm"
+        initial={{ opacity: 0, scale: 0.93, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="
+          w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl 
+          p-6 sm:p-8 md:p-10 lg:p-12 
+          rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.12)]
+          bg-white/70 backdrop-blur-3xl relative overflow-hidden
+        "
       >
+        {/* Soft Glow BG */}
+        <div className="absolute -top-24 -left-24 w-60 sm:w-72 h-60 sm:h-72 bg-green-300/30 blur-3xl rounded-full"></div>
+        <div className="absolute -bottom-24 -right-24 w-60 sm:w-72 h-60 sm:h-72 bg-green-500/25 blur-3xl rounded-full"></div>
+
         {/* Header */}
-        <div className="flex items-center gap-4">
-          <div className="p-3 rounded-full bg-green-100 text-green-600 ring-2 ring-green-200/60 shadow-inner">
-            <CheckCircle2 size={30} />
-          </div>
+        <div className="flex items-center gap-4 sm:gap-5 relative z-10">
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="p-3 sm:p-4 md:p-5 rounded-full bg-green-100 text-green-600 shadow-lg"
+          >
+            <CheckCircle2 size={35} className="sm:hidden" />
+            <CheckCircle2 size={40} className="hidden sm:block md:hidden" />
+            <CheckCircle2 size={45} className="hidden md:block" />
+          </motion.div>
 
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-              Payment Successful
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+              Payment Successful 🎉
             </h1>
-            <p className="text-sm text-slate-500 mt-1">
-              Your transaction has been completed successfully.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Thank you! Your payment has been completed.
             </p>
           </div>
         </div>
 
-        {/* Info Cards */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-gray-200 bg-slate-50 p-5 shadow-sm hover:shadow-md transition-all">
-            <p className="text-xs text-slate-600 uppercase font-semibold">
-              Transaction ID
-            </p>
-            <p className="mt-2 text-sm font-bold text-slate-900 break-all">
-              {allId.transactionId}
-            </p>
+        {/* Payment Details */}
+        <div
+          className="mt-8 sm:mt-10 bg-white/80 rounded-2xl 
+        p-5 sm:p-8 shadow-lg backdrop-blur-md"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                TRANSACTION ID
+              </p>
+              <p className="mt-2 text-sm sm:text-base font-bold text-slate-900 break-all">
+                {allId.transactionId}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                PAYMENT METHOD
+              </p>
+              <p className="mt-2 text-sm sm:text-base font-bold text-slate-900">
+                {allId.method || "Online Payment"}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                AMOUNT PAID
+              </p>
+              <p className="mt-2 text-lg sm:text-xl font-bold text-green-600">
+                ৳ {allId.amount || "—"}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                CUSTOMER EMAIL
+              </p>
+              <p className="mt-2 text-sm sm:text-base font-bold text-slate-900 break-all">
+                {allId.email || "Hide"}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                DATE & TIME
+              </p>
+              <p className="mt-2 text-sm sm:text-base font-bold text-slate-900">
+                {allId.date}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-slate-500">
+                PAYMENT STATUS
+              </p>
+              <p className="mt-2 text-lg sm:text-xl font-bold text-green-600">
+                PAID ✔
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-slate-50 p-5 shadow-sm hover:shadow-md transition-all">
-            <p className="text-xs text-slate-600 uppercase font-semibold">
-              Payment Status
-            </p>
-            <p className="mt-2 text-lg font-bold text-green-600">PAID ✔</p>
-          </div>
+          {/* Tracking ID Box */}
+          <div className="mt-8 sm:mt-10 p-5 sm:p-6 rounded-2xl bg-slate-50 shadow-inner">
+            <p className="text-xs text-slate-500 font-semibold">TRACKING ID</p>
 
-          {/* Tracking Section */}
-          <div className="md:col-span-2 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition-all">
-            <p className="text-xs text-slate-600 uppercase font-semibold">
-              Tracking ID
-            </p>
-
-            <div className="mt-3 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="mt-3 flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
               <div>
-                <p className="text-sm text-slate-800 font-medium">
-                  Your Tracking Code:
+                <p className="text-sm text-slate-700">
+                  Your parcel tracking code:
                 </p>
-                <p className="text-sm font-semibold text-slate-900 mt-1 break-all">
+                <p className="text-lg sm:text-xl font-bold text-slate-900 mt-1 break-all">
                   {allId.trakingId}
                 </p>
-                <p className="text-xs text-slate-400 mt-1">
-                  A receipt has been sent to your email.
-                </p>
               </div>
 
-              <div className="flex items-center gap-3">
-                <button className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition">
-                  <Download size={16} />
-                  Receipt
-                </button>
-              </div>
+              <button
+                className="
+                flex items-center gap-2 px-4 py-2 
+                rounded-xl bg-white shadow hover:shadow-md 
+                text-sm font-medium transition
+              "
+              >
+                <Download size={18} />
+                Download Invoice
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-end gap-3">
+        {/* Bottom Button */}
+        <div className="mt-10 flex justify-end">
           <Link
-            to={"/dasbord/myparcel"}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-lime-500 to-green-600 text-white font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-transform"
+            to="/dasbord/myparcel"
+            className="
+              px-6 sm:px-7 py-3 text-white font-semibold rounded-xl
+              bg-gradient-to-r from-green-600 to-lime-500
+              shadow-lg hover:scale-[1.03] transition-all
+            "
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="w-4 h-4"
-            >
-              <path d="M3 12h18M3 12l6-6M3 12l6 6" />
-            </svg>
-            Go to My Parcel Page
+            Go to My Parcel →
           </Link>
         </div>
 
-        {/* Footer */}
-        <div className="mt-8 text-center text-xs text-slate-400">
-          <p>
-            If you didn’t expect this payment, contact support at
-            <span className="font-medium text-slate-600">
-              {" "}
-              support@yourcompany.com
-            </span>
-          </p>
-        </div>
+        <p className="text-center text-[10px] sm:text-xs text-slate-500 mt-8">
+          Need help? Email:
+          <span className="font-medium text-slate-700">
+            {" "}
+            support@yourcompany.com
+          </span>
+        </p>
       </motion.div>
     </div>
   );
