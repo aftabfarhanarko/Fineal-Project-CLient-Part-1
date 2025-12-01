@@ -157,7 +157,9 @@ const MyParcel = () => {
                   </td>
 
                   {/* Tracking */}
-                  <td className="p-4 text-gray-800">{item?.trakingId}</td>
+                  <td className="p-4 font-medium text-gray-800">
+                    <Link to={`/track-parcel/${item.trakingId}`}>{item?.trakingId}</Link>
+                  </td>
 
                   {/* Delivery Status */}
                   <td className="p-4 md:px-4 px-8 text-gray-800">

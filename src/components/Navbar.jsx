@@ -37,13 +37,9 @@ const Navbar = () => {
 
               <li>
                 <NavLink to="/raider" className=" ">
-                  Be a Rider
+                  Apply Rider
                 </NavLink>
               </li>
-
-             
-
-
               {
                 user && <> 
              
@@ -59,7 +55,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to="/dasbord" className="">
-                  My Parcel
+                 Dasbord
                 </NavLink>
               </li>
               </>

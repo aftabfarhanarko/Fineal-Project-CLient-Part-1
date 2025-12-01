@@ -45,6 +45,7 @@ const AssinRider = () => {
       riderId: ride._id,
       riderEmail: ride.yourEmail,
       riderName: ride.yourName,
+      trakingId:parcelSet.trakingId
     };
     axioSecore.patch(`parcel/${parcelSet._id}`, riderInfo).then((res) => {
       refetch();

@@ -28,6 +28,7 @@ import AssinRider from "../pages/Dashbord/AssinRider/AssinRider";
 import AssingDiliveryTask from '../pages/Dashbord/AssingDiliveryTask/AssingDiliveryTask'
 import RIderRoute from "./RIderRoute";
 import CompletRiderTask from "../pages/Dashbord/CompletRiderTask/CompletRiderTask";
+import TrakinkParcel from "../pages/Home/TrakinkParcel/TrakinkParcel";
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
             <Price></Price>
           </PriverRouter>
         ),
+      },
+      {
+        path: "/track-parcel/:trakingId",
+        Component:TrakinkParcel
       },
       {
         path: "/*",

@@ -23,10 +23,9 @@
 
 
 a.active{
-  @apply   border-b  text-lime-600
+  @apply   p-1.5 rounded-xl bg-primary px-4  text-secondary
 }
 
-/* Hover effect সম্পূর্ণ বন্ধ করার জন্য */
 .custom-carousel .slider {
   overflow: visible !important;
 }
@@ -51,7 +50,6 @@ a.active{
   transform: none !important;
 }
 
-/* Arrow buttons সবসময় দেখাতে চাইলে */
 .custom-carousel .control-arrow {
   opacity: 0.4 !important;
 }

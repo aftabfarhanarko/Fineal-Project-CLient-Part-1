@@ -27,7 +27,11 @@ const AssingDiliveryTask = () => {
   console.log(parcel);
 
   const handelAcceptsPsrcel = (items, status) => {
-    const statusInfo = { deliveryStatus: status };
+    const statusInfo = { 
+      deliveryStatus: status,
+      riderId:items.riderId,
+      trakingId:items.trakingId
+    };
     let message = `Parcel Status is updated with ${status
       .split("-")
       .join(" ")}`;
@@ -93,7 +97,7 @@ const AssingDiliveryTask = () => {
             {parcel.map((item, i) => (
               <tr
                 key={i}
-                className="border-b border-gray-200 hover:bg-gray-50 transition"
+                className="border-b border-gray-200 hover:bg-gray-100 transition"
               >
                 {/* Serial */}
                 <td className=" pl-6 font-medium text-gray-900">{i + 1}</td>
