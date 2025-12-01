@@ -40,14 +40,18 @@ const Navbar = () => {
                   Be a Rider
                 </NavLink>
               </li>
+
+             
+
+
               {
                 user && <> 
              
-              <li>
+              {/* <li>
                 <NavLink to="/price" className="">
                   Pricing
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to="/send_parcel" className="">
                   Send Parcel

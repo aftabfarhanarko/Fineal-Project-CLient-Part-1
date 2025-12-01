@@ -25,6 +25,7 @@ import PaymentHiestory from "../pages/Dashbord/PaymentHiestory/PaymentHiestory";
 import UserManage from "../pages/Dashbord/userManage/userManage";
 import AdminRole from "./AdminRole";
 import AssinRider from "../pages/Dashbord/AssinRider/AssinRider";
+import AssingDiliveryTask from '../pages/Dashbord/AssingDiliveryTask/AssingDiliveryTask'
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +144,10 @@ export const router = createBrowserRouter([
       {
         path: "/dasbord/userManage",
         element: <AdminRole><UserManage></UserManage></AdminRole>
+      },
+      {
+        path: "/dasbord/assigned-deliveries",
+        element: <AssingDiliveryTask></AssingDiliveryTask>
       },
     ],
   },

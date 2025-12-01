@@ -111,8 +111,8 @@ const MyParcel = () => {
   };
   return (
     <div className=" md:p-8">
-      <h1 className=" text-2xl font-bold mt-5  mb-10 ">
-        {/* My Send Parcel : {data?.length} */}
+      <h1 className=" text-2xl font-semibold text-secondary ">
+        My Send Parcel : {data?.length}
       </h1>
       <div className="mt-6">
         <div className="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-100">
@@ -160,20 +160,28 @@ const MyParcel = () => {
                   <td className="p-4 text-gray-800">{item?.trakingId}</td>
 
                   {/* Delivery Status */}
-                  <td className="p-4 text-gray-800">
+                  <td className="p-4 md:px-4 px-8 text-gray-800">
                     <span
-                      className={`px-3 py-1 rounded-xl text-xs font-medium shadow-sm
+                      className={`px-6 py-1 rounded-xl text-xs font-medium shadow-sm
     ${
       item.deliveryStatus === "pending-pickup" &&
-      "bg-yellow-50 text-yellow-700 border border-yellow-200"
+      "bg-yellow-50 text-yellow-600 border border-yellow-200"
     }
     ${
       item.deliveryStatus === "driver-assigned" &&
       "bg-blue-50 text-blue-600 border border-blue-200"
     }
     ${
-      item.deliveryStatus === "delivered" &&
-      "bg-green-50 text-green-700 border border-green-200"
+      item.deliveryStatus === "rider-arriving" &&
+      "bg-green-50 text-orange-600 border border-orange-200"
+    }
+    ${
+      item.deliveryStatus === "parcel-picked-up" &&
+      "bg-green-50 text-amber-500 border border-amber-200"
+    }
+    ${
+      item.deliveryStatus === "parcel-delivered" &&
+      "bg-green-50 text-green-700 border border-green-400"
     }
     ${
       item.deliveryStatus === "cancelled" &&

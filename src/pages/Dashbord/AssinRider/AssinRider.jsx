@@ -47,9 +47,10 @@ const AssinRider = () => {
       riderName: ride.yourName,
     };
     axioSecore.patch(`parcel/${parcelSet._id}`, riderInfo).then((res) => {
+      refetch();
       if (res.data.modifiedCount) {
         referen.current.close();
-        refetch();
+        
         toast.success("Raider Assing Successfully");
       }
       // console.log(res.data);

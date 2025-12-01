@@ -14,7 +14,7 @@ import { GoPlus, GoSidebarExpand } from "react-icons/go";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { HiHomeModern } from "react-icons/hi2";
 import useAuth from "../Hook/useAuth";
-import { FaRegCreditCard, FaUser, FaUsers } from "react-icons/fa";
+import { FaRegCreditCard, FaTasks, FaUser, FaUsers } from "react-icons/fa";
 import useRole from "../Hook/useRole";
 import { RiMotorbikeFill } from "react-icons/ri";
 import { PiMotorcycleFill } from "react-icons/pi";
@@ -23,6 +23,9 @@ import { MdDeliveryDining } from "react-icons/md";
 const DashbordLayout = () => {
   const { user, userLogOut } = useAuth();
   const role = useRole();
+
+
+  
 
   return (
     <div className="drawer lg:drawer-open">
@@ -147,6 +150,23 @@ const DashbordLayout = () => {
                   </span>
                 </Link>
               </li>
+
+              {/* {role === "rider" && ( */}
+                <>
+                 
+                  <li>
+                    <Link
+                      to="/dasbord/assigned-deliveries"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Assigned Deliveries "
+                    >
+                      {/* Home icon */}
+                      <FaTasks className=" w-4 md:w-5  h-5 md:h-7" />
+                      <span className="is-drawer-close:hidden"> Assigned Deliveries</span>
+                    </Link>
+                  </li>
+                </>
+              {/* )} */}
 
               {role?.role === "admin" ? (
                 <>

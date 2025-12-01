@@ -5,6 +5,7 @@ import useAxiosSecoir from "../../Hook/useAxiosSecoir";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAuth from "../../Hook/useAuth";
 const RiderBook = () => {
   const {
     register,
@@ -12,6 +13,8 @@ const RiderBook = () => {
     control,
     formState: { errors },
   } = useForm();
+
+  const {user} = useAuth();
 
   const axiosSecoir = useAxiosSecoir();
   const serviceCenters = useLoaderData();
@@ -117,7 +120,7 @@ const RiderBook = () => {
                   <input
                     type="text"
                     {...register("yourName", { required: true })}
-                    placeholder="Your Name"
+                    defaultValue={user?.displayName}
                     className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
                   {errors.yourName?.type === "required" && (
@@ -135,7 +138,7 @@ const RiderBook = () => {
                   <input
                     type="email"
                     {...register("yourEmail", { required: true })}
-                    placeholder="Your Email"
+                    defaultValue={user?.email}
                     className="w-full px-4 py-2.5 md:py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent text-sm border-black/50 placeholder:text-black/90 md:text-base"
                   />
                   {errors.yourEmail?.type === "required" && (
