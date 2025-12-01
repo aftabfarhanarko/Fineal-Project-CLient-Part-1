@@ -24,7 +24,8 @@ const MyParcel = () => {
   const { isPending, isLoading, data, refetch } = useQuery({
     queryKey: ["tododat", user?.email],
     queryFn: () =>
-      axiosData.get(`parcel?email=${user?.email}`).then((respons) => {
+      axiosData.get(`parcel?email=${user?.email}`)
+    .then((respons) => {
         console.log("Task Query Data Find", respons.data.result);
         return respons.data.result;
       }),

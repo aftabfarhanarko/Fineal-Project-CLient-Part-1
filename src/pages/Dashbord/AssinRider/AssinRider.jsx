@@ -32,7 +32,7 @@ const AssinRider = () => {
     },
   });
 
-  console.log(rider);
+
 
   const riderAssing = (item) => {
     setParcelSet(item);
@@ -64,8 +64,8 @@ const AssinRider = () => {
   }
   return (
     <div className=" py-10 px-3 md:px-10">
-      <h1> Assin RiderL:{parcel?.length}</h1>
-      <div className="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-100">
+      <h1 className=" text-secondary font-semibold text-2xl md:text-3xl"> Assin Rider:{parcel?.length}</h1>
+      <div className="overflow-x-auto mt-5 bg-white rounded-xl shadow-lg border border-gray-100">
         <table className="min-w-full text-sm">
           <thead className="bg-gray-100 text-left text-gray-700">
             <tr>

@@ -15,7 +15,7 @@ const UserManage = () => {
   // set Paginitions
   const [page, setPage] = useState(1);
   const [allUser, setAllUser] = useState(0);
-  const limit = 9; // per page
+  const limit = 8; // per page
   const skip = (page - 1) * limit;
   const totalPage = Math.ceil(allUser / limit);
 
@@ -238,7 +238,7 @@ const UserManage = () => {
                   <td className=" p-4">
                     {item.role === "rider" ? (
                       <span className=" text-md font-semibold text-red-600">
-                        No Updeat
+                        Not Updeat
                       </span>
                     ) : item.role === "admin" ? (
                       <button
