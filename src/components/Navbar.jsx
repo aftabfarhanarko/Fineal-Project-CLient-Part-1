@@ -40,26 +40,20 @@ const Navbar = () => {
                   Apply Rider
                 </NavLink>
               </li>
-              {
-                user && <> 
-             
-              {/* <li>
-                <NavLink to="/price" className="">
-                  Pricing
-                </NavLink>
-              </li> */}
-              <li>
-                <NavLink to="/send_parcel" className="">
-                  Send Parcel
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dasbord" className="">
-                 Dasbord
-                </NavLink>
-              </li>
-              </>
-               }
+              {user && (
+                <>
+                  <li>
+                    <NavLink to="/send_parcel" className="">
+                      Send Parcel
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dasbord" className="">
+                      Dasbord
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
@@ -153,35 +147,51 @@ hover:from-[#bae240] hover:via-[#c5e854] hover:to-[#d0f060]  transform transitio
         <div className="md:hidden bg-white border-t border-base-300 rounded-b-xl shadow py-5 transition duration-500">
           {/* Navigation */}
           <ul className="md:hidden font-medium text-[#1F1F1F] text-[15px] flex flex-col gap-4 items-center">
-            {/* Top 3 items */}
-            <li className="flex flex-wrap justify-center gap-5">
-              <Link to="/" className="hover:text-blue-600">
-                Services
-              </Link>
-              <Link to="/wqd" className="hover:text-blue-600">
-                Pricing
-              </Link>
-              <Link to="/raider" className="hover:text-blue-600">
-                Be a Rider
-              </Link>
-            </li>
-
             {/* Divider spacing */}
-            <div className="w-full border-b border-base-200"></div>
+            <div className="gap-5 grid grid-cols-3 justify-center ">
 
             {/* Bottom 2 items */}
-            <li className="flex justify-center gap-6">
-              <Link to="/about" className="hover:text-blue-600">
-                About Us
-              </Link>
-              <Link to="/mapcover" className="hover:text-blue-600">
-                Coverage
-              </Link>
+            <li>
+              <NavLink to="/" className=" ">
+                Services
+              </NavLink>
             </li>
+            <li>
+              <NavLink to="about" className=" ">
+                About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/mapcover" className="">
+                Coverage
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/raider" className=" ">
+                Apply Rider
+              </NavLink>
+            </li>
+            {user && (
+              <>
+                <li>
+                  <NavLink to="/send_parcel" className="">
+                    Send Parcel
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dasbord" className="">
+                    Dasbord
+                  </NavLink>
+                </li>
+              </>
+            )}
+            </div>
           </ul>
 
+
           {/* Profile */}
-          <div className="flex  mt-3 justify-center  items-center gap-4 mb-3">
+          <div className="flex  mt-8 justify-center  items-center gap-4 mb-3">
             {user && (
               <img
                 className="w-10 h-10 rounded-full object-cover"
