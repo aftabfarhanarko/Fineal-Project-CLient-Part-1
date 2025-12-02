@@ -40,7 +40,7 @@ const Payment = () => {
     return <Loding></Loding>;
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>

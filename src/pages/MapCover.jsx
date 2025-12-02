@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { IoIosSearch } from "react-icons/io";
 
-const promise = fetch("warehouses.json").then((res) => res.json());
+const promise = fetch("warehouses.json").then((res) => res?.json());
 const MapCover = () => {
   const position = [23.685, 90.3563]; //bangladeh positions
   const mapRef = useRef(null);
@@ -13,12 +13,12 @@ const MapCover = () => {
     e.preventDefault();
     const locations = e.target.text.value;
 
-    const distick = promis.find((d) =>
+    const distick = promis?.find((d) =>
       d.district.toLowerCase().includes(locations.toLowerCase())
     );
 
     if (distick) {
-      const coord = [distick.latitude, distick.longitude];
+      const coord = [distick?.latitude, distick?.longitude];
       mapRef.current.flyTo(coord, 16);
     }
   };
@@ -75,19 +75,19 @@ const MapCover = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          {promis.map((center) => (
+          {promis?.map((center) => (
             <Marker
-              key={center.district}
-              position={[center.latitude, center.longitude]}
+              key={center?.district}
+              position={[center?.latitude, center?.longitude]}
             >
               <Popup>
-                <strong>{center.district}</strong> <br />
+                <strong>{center?.district}</strong> <br />
                 <strong>
                   {" "}
-                  Services Area : {center.covered_area.join(", ")}
+                  Services Area : {center?.covered_area?.join(", ")}
                 </strong>{" "}
                 <br></br>
-                <strong>Status : {center.status ? "Open" : "Off"}</strong>
+                <strong>Status : {center?.status ? "Open" : "Off"}</strong>
               </Popup>
             </Marker>
           ))}

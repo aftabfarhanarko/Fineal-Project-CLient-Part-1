@@ -41,10 +41,11 @@ const RiderBook = () => {
     axiosSecoir
       .patch(`/user/riderUpdet?email=${user.email}`, { riderInfoUb })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        toast.success("Updeat Successfully")
       });
 
-    console.log(data);
+    // console.log(data);
     const roiderPhoto = data.photo[0];
     const fromData = new FormData();
     fromData.append("image", roiderPhoto);
@@ -74,7 +75,7 @@ const RiderBook = () => {
       axiosSecoir
         .post("/rider", sendData)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           // toast.success("Rider Creat Successfully");
           nmaviget("/dasbord");
           Swal.fire({
@@ -107,7 +108,7 @@ const RiderBook = () => {
       });
   }, []);
 
-  console.log(top);
+  // console.log(top);
   return (
     <div className=" my-10 min-h-screen">
       {show ? (

@@ -98,7 +98,7 @@ const UserManage = () => {
       }
     });
   };
-  console.log(searchNow);
+  // console.log(searchNow);
 
   return (
     <div className="py-6 md:py-10 px-2 md:px-15">

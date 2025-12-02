@@ -8,7 +8,7 @@ import ReviewCard from "./ReviewCard";
 
 const MenuCard = ({ reivewPromis }) => {
   const reviews = use(reivewPromis);
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div>

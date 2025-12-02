@@ -10,7 +10,7 @@ const Price = () => {
   } = useForm();
 
   const handelData = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
   return (

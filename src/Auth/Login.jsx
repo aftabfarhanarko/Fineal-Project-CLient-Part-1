@@ -22,7 +22,7 @@ const Login = () => {
   const loginHandel = (data) => {
     loginUser(data.email, data.password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         toast.success("Login User Successfully");
         naviget(location?.state ? location?.state : "/");
       })
@@ -43,13 +43,14 @@ const Login = () => {
         axiosSecoir
           .post("/svuser", savedDB)
           .then((res) => {
-            console.log("Google LOgin", res.data);
+            // console.log("Google LOgin", res.data);
 
             toast.success("Creat User Successfully");
             naviget("/");
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
+            toast.warning(err.code)
           });
       })
       .catch((err) => {

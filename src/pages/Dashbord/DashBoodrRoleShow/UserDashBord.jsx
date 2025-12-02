@@ -42,7 +42,7 @@ const UserDashBord = () => {
       const res = await axiosSecoir.get(
         `/totaluser/parcel?email=${user.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -52,7 +52,7 @@ const UserDashBord = () => {
       const res = await axiosSecoir.get(
         `/totalDelivery/deliveryStatus?deliveryStatus=parcel-delivered&email=${user.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });

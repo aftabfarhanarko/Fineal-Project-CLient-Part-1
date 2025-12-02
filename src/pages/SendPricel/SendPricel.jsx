@@ -51,12 +51,12 @@ const SendPricel = () => {
   // weight: "2";
 
   const subMiteFrom = (data) => {
-    console.log("Submite Producat", data);
+    // console.log("Submite Producat", data);
     const isDocument = data.parcelType === "document";
     const isSameDistrict = data.senderdistick === data.reciverDistrick;
     const parcilWight = parseFloat(data.weight);
 
-    console.log(parcilWight);
+    // console.log(parcilWight);
 
     let cost = 0;
     // cost conditions chack
@@ -122,7 +122,7 @@ const SendPricel = () => {
       }
     });
 
-    console.log("cost", cost);
+    // console.log("cost", cost);
   };
 
   return (

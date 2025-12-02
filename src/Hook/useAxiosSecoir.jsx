@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 
 const axiosShire = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://final-project-server-self.vercel.app/",
 });
 
 const useAxiosSecoir = () => {

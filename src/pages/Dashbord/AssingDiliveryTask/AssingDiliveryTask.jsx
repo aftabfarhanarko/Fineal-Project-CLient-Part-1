@@ -24,7 +24,7 @@ const AssingDiliveryTask = () => {
     },
   });
 
-  console.log(parcel);
+  // console.log(parcel);
 
   const handelAcceptsPsrcel = (items, status) => {
     const statusInfo = {
@@ -53,14 +53,14 @@ const AssingDiliveryTask = () => {
           buttonsStyling: false,
         });
       }
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
 
   const handelRiderRegectParcel = (item) => {
     const statusInfo = { deliveryStatus: "cancelled" };
     axiosSecore.patch(`/parcel/${item._id}/status`, statusInfo).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       refetch();
       toast.success("Parcel Hand Over Rider");
     });

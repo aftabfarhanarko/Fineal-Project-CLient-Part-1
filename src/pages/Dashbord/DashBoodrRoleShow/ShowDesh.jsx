@@ -12,7 +12,7 @@ const Dashboard = () => {
     return <Loding></Loding>
   }
 
-  console.log(role);
+  // console.log(role);
   
   if(role === "admin"){
     return <AdminDashBord></AdminDashBord>

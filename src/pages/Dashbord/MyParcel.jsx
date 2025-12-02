@@ -25,7 +25,7 @@ const MyParcel = () => {
     queryKey: ["tododat", user?.email],
     queryFn: () =>
       axiosData.get(`parcel?email=${user?.email}`).then((respons) => {
-        console.log("Task Query Data Find", respons.data.result);
+        // console.log("Task Query Data Find", respons.data.result);
         return respons.data.result;
       }),
   });
@@ -33,10 +33,10 @@ const MyParcel = () => {
   const handelView = (item) => {
     setParcel(item);
     refernce.current.showModal();
-    console.log("Detlise");
+    // console.log("Detlise");
   };
 
-  console.log(parcel);
+  // console.log(parcel);
 
   if (isPending) return <Loding></Loding>;
   if (isLoading) return <Loding></Loding>;
@@ -70,7 +70,7 @@ const MyParcel = () => {
           .then((res) => {
             // task query propley refetch delet data
             refetch();
-            console.log("Propley Delet Now", res);
+            // console.log("Propley Delet Now", res);
             toast.success("Delet Now");
           })
           .catch((err) => {
@@ -158,7 +158,7 @@ const MyParcel = () => {
                       {item?.senderRegion}
                     </p>
                   </td>
-                  <td className="p-4 text-gray-800 dark:text-gray-200">
+                  <td className="p-4 text-gray-800 dark:text-gray-200 underline">
                     <Link to={`/track-parcel/${item.trakingId}`}>
                       {item?.trakingId}
                     </Link>

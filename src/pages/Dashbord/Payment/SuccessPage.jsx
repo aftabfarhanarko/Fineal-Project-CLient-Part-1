@@ -18,7 +18,7 @@ const SuccessPage = () => {
       axiosSecoir
         .patch(`/success-payment?session_id=${sessionId}`)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
 
           setAllId({
             trakingId: res.data.trakingId,
@@ -34,7 +34,7 @@ const SuccessPage = () => {
     }
   }, [sessionId, axiosSecoir]);
 
-  console.log(allId);
+  // console.log(allId);
 
   if (loading) return <Loding />;
 

@@ -57,7 +57,7 @@ const Register = () => {
             .then((res) => {
               if (res.data.data) {
                 toast.success("User Saved DB");
-                console.log(res);
+                // console.log(res);
               }
             })
             .catch((err) => {
@@ -89,7 +89,7 @@ const Register = () => {
           // password:data.user.password,
         };
         axiosSecoir.post("/svuser", savedDB).then((res) => {
-          console.log("Google LOgin", res);
+          // console.log("Google LOgin", res);
 
           toast.success("Creat User Successfully");
           naviget("/");
