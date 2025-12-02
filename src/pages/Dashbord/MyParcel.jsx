@@ -215,27 +215,18 @@ const MyParcel = () => {
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       {/* View */}
-                      <button
-                        onClick={() => handelView(item)}
-                        className="px-4 py-1.5 rounded-lg bg-blue-50  text-blue-800 border border-blue-300 
-                             flex items-center gap-2 font-medium hover:bg-blue-100 hover:shadow-sm transition"
-                      >
-                        View <MdOutlineRateReview size={18} />
-                      </button>
 
-                      {/* Edit
-                      <button
-                        className="px-4 py-1.5 rounded-lg bg-white text-green-600 border border-green-300 
-                                                      flex items-center gap-2 font-medium hover:bg-green-50 hover:shadow-sm transition "
-                      >
-                        Approved <MdCheckCircle size={16} />
-                      </button> */}
-
+                       <button
+                      onClick={() => handelView(item)}
+                      className="px-5 py-1.5 rounded-lg bg-white text-gray-900 border border-gray-300 flex items-center gap-2 font-semibold hover:shadow-md hover:scale-105 transition"
+                    >
+                      View <MdOutlineRateReview className="text-blue-500" size={18} />
+                    </button>
                       {/* Delete */}
                       <button
                         onClick={() => handelDelet(item._id)}
                         className="px-4 py-1.5 rounded-lg bg-white text-red-600 border border-red-300 
-                             flex items-center gap-2 font-medium hover:bg-red-50 hover:shadow-sm transition"
+                             flex items-center gap-2 font-medium hover:bg-red-50 hover:shadow-sm transition hover:scale-105 transition"
                       >
                         Delete <MdOutlineDeleteOutline size={20} />
                       </button>

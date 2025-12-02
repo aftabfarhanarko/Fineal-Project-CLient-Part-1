@@ -12,6 +12,7 @@ import {
   CartesianGrid,
   Cell,
 } from "recharts";
+import Loding from "../../../Shared/Loding";
 
 const RiderDashBord = () => {
   const axiosSecoir = useAxiosSecoir();
@@ -39,12 +40,9 @@ const RiderDashBord = () => {
 
   const colors = ["#6366F1", "#EC4899", "#10B981", "#F59E0B", "#3B82F6"];
 
-  if (isLoading)
-    return (
-      <div className="p-6 text-center text-gray-400 text-lg">
-        Loading Rider Dashboard...
-      </div>
-    );
+  if (isLoading) {
+    return <Loding></Loding>;
+  }
 
   return (
     <div className="p-3 md:p-5 lg:p-7">

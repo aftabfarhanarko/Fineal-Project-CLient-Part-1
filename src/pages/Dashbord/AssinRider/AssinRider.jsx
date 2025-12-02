@@ -58,7 +58,7 @@ const AssinRider = () => {
   }
 
   return (
-    <div className="py-10 px-3 md:px-10">
+    <div className="p-3 md:p-5 lg:p-7">
       <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-400">
         Assign Rider: {parcel?.length}
       </h1>

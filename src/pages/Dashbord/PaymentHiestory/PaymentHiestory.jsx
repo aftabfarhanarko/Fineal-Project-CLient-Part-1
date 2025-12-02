@@ -21,10 +21,11 @@ const PaymentHiestory = () => {
     return <Loding></Loding>;
   }
   return (
-    <div className="md:p-9">
-      <h2 className="text-3xl font-semibold text-secondary">
-        Total Payment Hiestory : {history?.length}
-      </h2>
+    <div className="p-3 md:p-5 lg:p-7">
+       <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-400">
+           Total Payment Hiestory : {history?.length}
+      </h1>
+     
 
       <div className="mt-8 md:min-h-auto min-h-[90vh]">
         <div className="overflow-x-auto mt-5  bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
