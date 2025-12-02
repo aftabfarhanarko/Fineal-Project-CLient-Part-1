@@ -47,7 +47,7 @@ const RiderDashBord = () => {
     );
 
   return (
-    <div className="p-6">
+    <div className="p-3 md:p-5 lg:p-7">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-secondary dark:text-white">

@@ -10,7 +10,7 @@ const AssinRider = () => {
   const axioSecore = useAxiosSecoir();
   const referen = useRef();
 
-  const { data: parcel, isLoading } = useQuery({
+  const { data: parcel, isLoading,refetch } = useQuery({
     queryKey: ["parcel", "pending-pickup"],
     queryFn: async () => {
       const data = await axioSecore.get("parcel?deliveryStatus=pending-pickup");
@@ -18,7 +18,7 @@ const AssinRider = () => {
     },
   });
 
-  const { data: rider = [], refetch } = useQuery({
+  const { data: rider = []  } = useQuery({
     queryKey: ["riders", parcelSet?.reciverDistrick, "available"],
     enabled: !!parcelSet,
     queryFn: async () => {
@@ -32,6 +32,7 @@ const AssinRider = () => {
   const riderAssing = (item) => {
     setParcelSet(item);
     referen.current.showModal();
+    // refetch();
     toast.success("Assign Rider");
   };
 
@@ -46,6 +47,7 @@ const AssinRider = () => {
       refetch();
       if (res.data.modifiedCount) {
         referen.current.close();
+        refetch()
         toast.success("Rider Assigned Successfully");
       }
     });

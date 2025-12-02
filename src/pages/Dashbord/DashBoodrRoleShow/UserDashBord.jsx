@@ -19,6 +19,11 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import useAuth from "../../../Hook/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecoir from "../../../Hook/useAxiosSecoir";
+import { Link } from "react-router";
+import Loding from "../../../Shared/Loding";
 
 const spendingData = [
   { month: "Jan", amount: 500 },
@@ -29,8 +34,35 @@ const spendingData = [
 ];
 
 const UserDashBord = () => {
+  const { user } = useAuth();
+  const axiosSecoir = useAxiosSecoir();
+  const { data , isLoading:newLode} = useQuery({
+    queryKey: ["usercreatParcel"],
+    queryFn: async () => {
+      const res = await axiosSecoir.get(
+        `/totaluser/parcel?email=${user.email}`
+      );
+      console.log(res.data);
+      return res.data;
+    },
+  });
+  const { data: delivered , isLoading} = useQuery({
+    queryKey: ["deliveryStatus"],
+    queryFn: async () => {
+      const res = await axiosSecoir.get(
+        `/totalDelivery/deliveryStatus?deliveryStatus=parcel-delivered&email=${user.email}`
+      );
+      console.log(res.data);
+      return res.data;
+    },
+  });
+
+
+  if(isLoading || newLode){
+    return <Loding></Loding>
+  }
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-3 md:p-5 lg:p-7">
       {/* TITLE */}
       <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
         User Dashboard
@@ -39,19 +71,24 @@ const UserDashBord = () => {
       {/* PROFILE */}
       <Card className="rounded-2xl shadow-lg dark:bg-gray-900">
         <CardContent className="p-6 flex items-center gap-6">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-            <User size={40} className="text-white" />
+          <div className="w-15 h-15 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                className=" rounded-full w-15 h-15 "
+              ></img>
+            ) : (
+              <User size={40} className="text-white" />
+            )}
           </div>
 
           <div>
             <h2 className="text-xl font-semibold dark:text-white">
-              Aftab Farhan Arko
+              {user.displayName}
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              arkofarhan@gmail.com
-            </p>
+            <p className="text-gray-600 dark:text-gray-300">{user.email}</p>
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              Joined: Jan 2024
+              {new Date(user.creatWb).toLocaleDateString()}
             </p>
           </div>
         </CardContent>
@@ -61,8 +98,12 @@ const UserDashBord = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="shadow-md border-l-4 border-purple-500 dark:bg-gray-900">
           <CardContent className="p-5">
-            <p className="text-gray-500 dark:text-gray-300">Total Orders</p>
-            <h1 className="text-3xl font-bold mt-1 dark:text-white">12</h1>
+            <p className="text-gray-500 dark:text-gray-300">
+              Total Create Parcel
+            </p>
+            <h1 className="text-3xl font-bold mt-1 dark:text-white">
+              {data?.length}
+            </h1>
           </CardContent>
         </Card>
 
@@ -75,8 +116,10 @@ const UserDashBord = () => {
 
         <Card className="shadow-md border-l-4 border-blue-500 dark:bg-gray-900">
           <CardContent className="p-5">
-            <p className="text-gray-500 dark:text-gray-300">Cancelled</p>
-            <h1 className="text-3xl font-bold mt-1 dark:text-white">01</h1>
+            <p className="text-gray-500 dark:text-gray-300">Delivered</p>
+            <h1 className="text-3xl font-bold mt-1 dark:text-white">
+              {delivered?.length}
+            </h1>
           </CardContent>
         </Card>
       </div>
@@ -118,17 +161,6 @@ const UserDashBord = () => {
         </CardContent>
       </Card>
 
-      {/* COUPON WIDGET */}
-      <Card className="rounded-2xl shadow-md dark:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-        <CardContent className="p-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-bold">20% OFF Coupon</h2>
-            <p className="opacity-80">Valid for your next 2 deliveries</p>
-          </div>
-          <Ticket size={40} className="opacity-90" />
-        </CardContent>
-      </Card>
-
       {/* TRACKING TIMELINE */}
       <Card className="rounded-2xl shadow-md dark:bg-gray-900">
         <CardContent className="p-6">
@@ -161,43 +193,39 @@ const UserDashBord = () => {
         </CardContent>
       </Card>
 
-      {/* REORDER HISTORY */}
-      <Card className="rounded-2xl shadow-md dark:bg-gray-900">
-        <CardContent className="p-6">
-          <h2 className="text-xl font-semibold mb-3 dark:text-white">
-            Reorder History
-          </h2>
-
-          <div className="space-y-3">
-            {["Laptop Charger", "Gift Box", "Documents"].map((item, i) => (
-              <div
-                key={i}
-                className="p-4 border rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
-              >
-                <p className="font-medium dark:text-white">{item}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  Last ordered: 2 weeks ago
-                </p>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
       {/* QUICK ACTIONS */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <button className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white py-3 rounded-xl shadow hover:opacity-90 transition-all">
-          Track Parcel
-        </button>
-        <button className="bg-purple-500 text-white py-3 rounded-xl shadow hover:bg-purple-600">
-          Book Delivery
-        </button>
-        <button className="bg-pink-500 text-white py-3 rounded-xl shadow hover:bg-pink-600">
-          Update Profile
-        </button>
-        <button className="bg-gray-800 text-white py-3 rounded-xl shadow hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600">
-          Help Center
-        </button>
+        <Link
+          to="/send_parcel"
+          className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 
+             text-white py-3 px-6 rounded-xl shadow 
+             hover:opacity-90 transition-all block text-center"
+        >
+          Send Parcel
+        </Link>
+        <Link
+          to="/dasbord/paymentHiestory"
+          className="bg-purple-500 text-white py-3 rounded-xl shadow hover:bg-purple-600 
+             hover:opacity-90 transition-all block text-center"
+        >
+          Payment Hiestory
+        </Link>
+
+        <Link
+          to="/dasbord/myparcel"
+          className="bg-pink-500 text-white py-3 rounded-xl shadow hover:bg-pink-600
+             hover:opacity-90 hover:bg-pink-600 transition-all block text-center"
+        >
+          My All parcel
+        </Link>
+
+        <Link
+          to="/mapcover"
+          className="bg-lime-600 text-white py-3 rounded-xl shadow hover:bg-lime-700
+             hover:opacity-90  transition-all block text-center"
+        >
+          All Delivery Center
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecoir from "../../Hook/useAxiosSecoir";
 import useAuth from "../../Hook/useAuth";
 import Loding from "../../Shared/Loding";
@@ -391,4 +391,4 @@ const MyParcel = () => {
   );
 };
 
-export default MyParcel;
+export default MyParcel; 

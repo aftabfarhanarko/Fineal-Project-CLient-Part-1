@@ -62,7 +62,7 @@ const AdminDashBord = () => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8">
+    <div className="p-3 md:p-5 lg:p-7">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-secondary dark:text-white tracking-tight">

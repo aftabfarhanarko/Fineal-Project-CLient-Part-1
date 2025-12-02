@@ -38,7 +38,7 @@ const DashbordLayout = () => {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <nav className="navbar w-full bg-white dark:bg-gray-900 shadow-md px-4 md:px-10 py-3 flex justify-between items-center">
+        <nav className="navbar w-full bg-white dark:bg-gray-900 shadow-md px-4 md:px-10 py-5 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <label
               htmlFor="my-drawer-4"
