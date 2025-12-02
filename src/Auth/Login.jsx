@@ -17,7 +17,7 @@ const Login = () => {
   const { loginUser, googleLogin } = useAuth();
   const naviget = useNavigate();
   const location = useLocation();
-  const axiosSecoir = useAxiosSecoir()
+  const axiosSecoir = useAxiosSecoir();
 
   const loginHandel = (data) => {
     loginUser(data.email, data.password)
@@ -40,17 +40,17 @@ const Login = () => {
           email: data.user.email,
           // password:data.user.password,
         };
-        axiosSecoir.post("/svuser", savedDB)
-        .then((res) => {
-          console.log("Google LOgin", res.data);
+        axiosSecoir
+          .post("/svuser", savedDB)
+          .then((res) => {
+            console.log("Google LOgin", res.data);
 
-          toast.success("Creat User Successfully");
-          naviget("/");
-        })
-        .catch(err => {
-          console.log(err);
-          
-        })
+            toast.success("Creat User Successfully");
+            naviget("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         toast.warning(err.code);
@@ -71,6 +71,18 @@ const Login = () => {
         <div className="mb-6 md:mb-8">
           <img src={registe}></img>
         </div>
+
+        <p className="text-sm  border border-gray-700 px-4 py-3 rounded-lg leading-relaxed mb-4">
+          <span className="font-semibold text-pink-400">
+            Admin Login Email:
+          </span>
+          <span className="ml-2 text-black">supper@admin.com</span>
+          <br />
+          <span className="font-semibold text-pink-400">
+            Admin Login Password:
+          </span>
+          <span className="ml-2 text-black">SuPP@@12</span>
+        </p>
 
         <form onSubmit={handleSubmit(loginHandel)}>
           {/* Email Field */}

@@ -19,6 +19,9 @@ const SkeletonRow = () => (
 
 const UserManage = () => {
   const axiosSecoir = useAxiosSecoir();
+  const [searchNow, setSearchNow] = useState("");
+
+  // pasitions
   const [page, setPage] = useState(1);
   const [allUser, setAllUser] = useState(0);
   const limit = 8;
@@ -29,7 +32,7 @@ const UserManage = () => {
     queryKey: ["users", page],
     queryFn: async () => {
       const res = await axiosSecoir.get(
-        `/users?searchText=&limit=${limit}&skip=${skip}`
+        `/users?searchText=${searchNow}&limit=${limit}&skip=${skip}`
       );
       setAllUser(res.data.total);
       return res.data;
@@ -95,33 +98,32 @@ const UserManage = () => {
       }
     });
   };
-
-  const handelSearch = (e) => {
-    e.preventDefault();
-  };
+  console.log(searchNow);
 
   return (
     <div className="py-6 md:py-10 px-2 md:px-15">
       {/* Header + Search */}
       <div className="md:flex justify-between items-center mb-6 gap-4">
-         <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-400">
-         All Users: {data?.total || 0}
-      </h1>
-        
-        <form onSubmit={handelSearch} className="relative mt-3 md:mt-0 max-w-md w-full">
+        <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-400">
+          All Users: {data?.total || 0}
+        </h1>
+
+        <label className="relative mt-3 md:mt-0 max-w-md w-full">
           <input
             type="search"
             name="text"
+            onChange={(e) => setSearchNow(e.target.value)}
             placeholder="Search users..."
-            className="w-full px-5 py-3 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none text-gray-900 placeholder-gray-400"
+            className="w-full px-12 py-3 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none text-white placeholder-gray-400 bg-transparent"
           />
+
           <button
             type="submit"
-            className="absolute right-1 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-400 text-white font-semibold rounded-xl hover:opacity-90 transition"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-90 transition"
           >
-            <IoIosSearch />
+            <IoIosSearch className="w-5 h-5" />
           </button>
-        </form>
+        </label>
       </div>
 
       {/* Table */}
@@ -150,7 +152,6 @@ const UserManage = () => {
                     <td className="p-4 flex items-center gap-3">
                       <img
                         src={user.photoURL}
-                        alt={user.displayName}
                         className="w-13 h-13 rounded-full border-2 border-gradient-to-r from-pink-500 via-purple-500 to-blue-400"
                       />
                       <span className="font-semibold text-gray-900 dark:text-gray-200">

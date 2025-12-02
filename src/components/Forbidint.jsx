@@ -1,32 +1,32 @@
 import Lottie from "lottie-react";
-import forbiddenAnimation from "../animations/loading.json";
-import { Link } from "react-router";
+import { Link } from "react-router";  // react-router-dom থেকে import করতে হবে
+import animitis from '../animations/rider.json';  // নিশ্চিত হও ফাইল আছে
 
 const Forbidint = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Lottie
-        options={{
-          loop: false,
-          autoplay: true,
-          animationData: forbiddenAnimation,
-        }}
-        height={200}
-        width={200}
-      ></Lottie>
-      <h1 className="text-3xl font-bold text-red-500">
+    <div className="flex flex-col items-center justify-center h-screen text-center p-4">
+      <div className="w-64 h-64">
+        <Lottie
+          animationData={animitis}
+          loop={true}
+          autoplay={true}
+        />
+        {/* <RingLoader color="#4fd81e" /> */}
+      </div>
+
+      <h1 className="text-3xl font-bold text-red-600 mt-4">
         You Are Forbidden to Access This Page
       </h1>
+
       <p className="text-lg text-gray-600 mt-2">
         Please contact the administrator if you believe this is an error.
       </p>
-      <div className="my-3 space-x-3">
+
+      <div className="my-5 space-x-3">
         <Link to="/" className="btn btn-primary text-black">
-          {" "}
           Go to Home
         </Link>
         <Link className="btn btn-secondary" to="/dashboard">
-          {" "}
           Go to Dashboard
         </Link>
       </div>

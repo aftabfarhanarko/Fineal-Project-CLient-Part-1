@@ -13,16 +13,13 @@ import ForgetPassword from "../Auth/ForgetPassword";
 import RiderBook from "../pages/Raider/RiderBook";
 import Price from "../pages/Price";
 import SendPricel from "../pages/SendPricel/SendPricel";
-// import Dashbord from "../pages/Dashbord/Dashbord";
 import DashbordLayout from "../Layout/DashbordLayout";
 import MyParcel from "../pages/Dashbord/MyParcel";
 import AllDrivers from "../pages/Dashbord/AllDrivers";
 import Payment from "../pages/Dashbord/Payment/Payment";
 import SuccessPage from "../pages/Dashbord/Payment/SuccessPage";
 import CancelPage from "../pages/Dashbord/Payment/CancelPage";
-// import ViewDetlics from "../pages/Dashbord/ViewDetlics";
 import PaymentHiestory from "../pages/Dashbord/PaymentHiestory/PaymentHiestory";
-// import UserManage from "../pages/Dashbord/userManage/userManage";
 import AdminRole from "./AdminRole";
 import AssinRider from "../pages/Dashbord/AssinRider/AssinRider";
 import AssingDiliveryTask from '../pages/Dashbord/AssingDiliveryTask/AssingDiliveryTask'
@@ -31,6 +28,7 @@ import CompletRiderTask from "../pages/Dashbord/CompletRiderTask/CompletRiderTas
 import TrakinkParcel from "../pages/Home/TrakinkParcel/TrakinkParcel";
 import Dashboard from "../pages/Dashbord/DashBoodrRoleShow/ShowDesh";
 import UserManage from "../pages/Dashbord/userManage/UserManage";
+import UserRole from "./UserRole";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +106,10 @@ export const router = createBrowserRouter([
         path: "/forget",
         element: <ForgetPassword></ForgetPassword>,
       },
+      {
+        path:"*",
+        element:<Error></Error>
+      }
     ],
   },
   {
@@ -124,7 +126,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dasbord/myparcel",
-        Component: MyParcel,
+        element:<UserRole><MyParcel></MyParcel></UserRole>
       },
       {
         path: "/dasbord/deliveries",
@@ -136,7 +138,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dasbord/paymentHiestory",
-        Component: PaymentHiestory,
+        element:<UserRole><PaymentHiestory></PaymentHiestory></UserRole>
       },
       {
         path: "/dasbord/payment/:parcelId",
@@ -162,6 +164,14 @@ export const router = createBrowserRouter([
         path: "/dasbord/riderCommpletTask",
         element: <RIderRoute><CompletRiderTask></CompletRiderTask></RIderRoute>
       },
+      {
+        path:"*",
+        element:<Error></Error>
+      }
     ],
   },
+  {
+    path:"*",
+    element:<Error></Error>
+  }
 ]);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LayoutDashboard,
   Package,
@@ -8,7 +8,6 @@ import {
   LogOut,
   Bell,
 } from "lucide-react";
-import Logo from "../Shared/Logo";
 import { Link, Outlet, useLocation } from "react-router";
 import { GoSidebarExpand } from "react-icons/go";
 import { HiHomeModern } from "react-icons/hi2";
@@ -30,8 +29,18 @@ const DashbordLayout = () => {
   const { user, userLogOut } = useAuth();
   const role = useRole();
   const location = useLocation();
-
   const isActive = (path) => location.pathname === path;
+
+  // Theam Sections
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
     <div className="drawer lg:drawer-open">
@@ -59,16 +68,35 @@ const DashbordLayout = () => {
 
           <div className="flex items-center gap-4">
             {/* Profile */}
-            {user && (
-              <img
-                className="w-10 h-10 rounded-full object-cover shadow-sm"
-                src={user.photoURL}
-                alt="profile"
-              />
-            )}
+
+            <div className="flex gap-2">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className=" avatar">
+                  {user && (
+                    <img
+                      className="w-13 h-13 rounded-full object-cover shadow-sm"
+                      src={user?.photoURL}
+                    
+                    />
+                  )}
+                </div>
+                <ul
+                  tabIndex="-1"
+                  className="menu bg-gray-700 menu-sm dropdown-content rounded-box z-1 mt-3 w-30  flex items-center p-2 shadow"
+                >
+                  <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
+                  />
+                </ul>
+              </div>
+            </div>
 
             {/* Notification */}
             <div className="relative">
+
               <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center shadow-sm hover:shadow-md transition">
                 <Bell className="w-5 h-5 text-gray-700 dark:text-gray-200" />
               </div>
